@@ -1,6 +1,5 @@
 """
 Python/SymPy translation of the Mathematica notebook
-1D_Quadrupolar_Spin_Liquid_Project.nb.
 
 The original notebook:
 1) defines a generic 4x4 Hermitian Bloch Hamiltonian with zero diagonal;
@@ -56,14 +55,8 @@ def ham_qsl_symbolic(
 H_generic = ham_qsl_symbolic(f12, f13, f14, f23, f24, f34)
 
 
-def generic_characteristic_polynomial() -> sp.Expr:
-    """
-    Symbolic characteristic polynomial det(lambda I - H).
-
-    This is much more useful than forcing SymPy to print the fully explicit
-    quartic roots for six arbitrary complex hopping amplitudes.
-    """
-    return sp.factor(H_generic.charpoly(lambda_).as_expr())
+def generic_characteristic_polynomial():
+    return sp.factor((lambda_ * sp.eye(4) - H_generic).det())
 
 
 # -----------------------------------------------------------------------------
