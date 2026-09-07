@@ -1,0 +1,621 @@
+#!/usr/bin/env python3
+"""
+Compare OLD and NEW Z2-gauge sectors of the audited 1D quadrupolar spin liquid.
+
+This is a compact results script.  The Bloch coefficients are copied from the
+already-audited implementation; no Fourier derivation, gauge convention, or
+Hamiltonian physics is changed here.
+
+Outputs
+-------
+- dispersion_old_vs_new.png
+- Fq_old_vs_new.png
+- ground_state_energy_comparison.csv
+"""
+
+from __future__ import annotations
+
+import csv
+from itertools import permutations
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+# =============================================================================
+# User-editable parameters
+# =============================================================================
+
+Kx = 1.0
+Ky = 1.0
+Kz = 1.0
+Kt = 1.0
+Kw = 1.0
+
+NQ_PHYSICAL = 4001
+NQ_EXTENDED = 8001
+
+HERMITICITY_TOL = 1.0e-12
+GAP_TOL = 1.0e-8
+ENERGY_TOL = 1.0e-10
+NORMALIZATION_TOL = 5.0e-10
+TRACKING_TOL = 1.0e-12
+
+DISPERSION_FILE = "dispersion_old_vs_new.png"
+FQ_FILE = "Fq_old_vs_new.png"
+CSV_FILE = "ground_state_energy_comparison.csv"
+
+
+# =============================================================================
+# Audited Bloch coefficients: q = k a1
+# =============================================================================
+
+
+def bloch_coefficients_old(
+    q: float,
+    Kx_: float,
+    Ky_: float,
+    Kz_: float,
+    Kt_: float,
+    Kw_: float,
+) -> dict[str, complex]:
+    """OLD gauge: original upper horizontal x and w orientations."""
+    ep = np.exp(+1j * q)
+    em = np.exp(-1j * q)
+
+    f12 = 1j * (Kx_ * ep - Kw_ * em)
+    f13 = -1j * (Kt_ * ep + Kz_ * em)
+    f14 = 1j * Ky_
+    f23 = 1j * Ky_
+    f24 = -1j * (Kt_ * ep + Kz_ * em)
+    f34 = 1j * (Kx_ * em - Kw_ * ep)
+
+    return {
+        "f12": f12,
+        "f13": f13,
+        "f14": f14,
+        "f23": f23,
+        "f24": f24,
+        "f34": f34,
+    }
+
+
+def bloch_coefficients_new(
+    q: float,
+    Kx_: float,
+    Ky_: float,
+    Kz_: float,
+    Kt_: float,
+    Kw_: float,
+) -> dict[str, complex]:
+    """NEW gauge: upper horizontal x and w links inverted."""
+    ep = np.exp(+1j * q)
+    em = np.exp(-1j * q)
+
+    f12 = 1j * (Kx_ * ep - Kw_ * em)
+    f13 = -1j * (Kt_ * ep + Kz_ * em)
+    f14 = 1j * Ky_
+    f23 = 1j * Ky_
+    f24 = -1j * (Kt_ * ep + Kz_ * em)
+    f34 = -1j * (Kx_ * em - Kw_ * ep)
+
+    return {
+        "f12": f12,
+        "f13": f13,
+        "f14": f14,
+        "f23": f23,
+        "f24": f24,
+        "f34": f34,
+    }
+
+
+def _hamiltonian_from_coefficients(c: dict[str, complex]) -> np.ndarray:
+    """4x4 Hermitian Bloch matrix in the audited (1,2,3,4) basis."""
+    f12 = c["f12"]
+    f13 = c["f13"]
+    f14 = c["f14"]
+    f23 = c["f23"]
+    f24 = c["f24"]
+    f34 = c["f34"]
+
+    return np.array(
+        [
+            [0.0, f12, f13, f14],
+            [np.conj(f12), 0.0, f23, f24],
+            [np.conj(f13), np.conj(f23), 0.0, f34],
+            [np.conj(f14), np.conj(f24), np.conj(f34), 0.0],
+        ],
+        dtype=np.complex128,
+    )
+
+
+def hamiltonian_old(
+    q: float,
+    Kx_: float,
+    Ky_: float,
+    Kz_: float,
+    Kt_: float,
+    Kw_: float,
+) -> np.ndarray:
+    return _hamiltonian_from_coefficients(
+        bloch_coefficients_old(q, Kx_, Ky_, Kz_, Kt_, Kw_)
+    )
+
+
+def hamiltonian_new(
+    q: float,
+    Kx_: float,
+    Ky_: float,
+    Kz_: float,
+    Kt_: float,
+    Kw_: float,
+) -> np.ndarray:
+    return _hamiltonian_from_coefficients(
+        bloch_coefficients_new(q, Kx_, Ky_, Kz_, Kt_, Kw_)
+    )
+
+
+# =============================================================================
+# Eigenvalues, bands, F(q), gap, and ground-state energies
+# =============================================================================
+
+
+def _sorted_eigenvalues(H: np.ndarray) -> np.ndarray:
+    """Real eigenvalues of a Hermitian matrix, sorted in ascending order."""
+    if not np.allclose(H, H.conj().T, atol=HERMITICITY_TOL, rtol=HERMITICITY_TOL):
+        raise ValueError("Bloch Hamiltonian is not Hermitian within tolerance.")
+    eigs = np.linalg.eigvalsh(H)
+    if not np.isrealobj(eigs) or not np.all(np.isfinite(eigs)):
+        raise FloatingPointError("Non-real or non-finite eigenvalues detected.")
+    return eigs
+
+
+def bands_sorted(
+    hamiltonian,
+    q_values: np.ndarray,
+    couplings: tuple[float, float, float, float, float],
+) -> np.ndarray:
+    """Energy-sorted eigvalsh bands for spectral diagnostics; shape=(Nq,4)."""
+    return np.vstack(
+        [_sorted_eigenvalues(hamiltonian(float(q), *couplings)) for q in q_values]
+    )
+
+
+def _align_degenerate_eigenvectors(
+    eigenvalues: np.ndarray,
+    eigenvectors: np.ndarray,
+    previous_vectors: np.ndarray,
+) -> np.ndarray:
+    """Choose a continuous basis only within numerically exact degeneracies.
+
+    The tolerance scales with floating-point roundoff, not GAP_TOL.  The
+    unitary Procrustes rotation maximizes overlap with the previous basis.
+    Eigenvalues are never averaged, shifted, or otherwise modified.
+    """
+    aligned = eigenvectors.copy()
+    roundoff_tol = 32.0 * np.finfo(float).eps * max(
+        1.0, float(np.max(np.abs(eigenvalues)))
+    )
+    energy_order = np.argsort(eigenvalues)
+    start = 0
+    while start < len(energy_order):
+        stop = start + 1
+        while (
+            stop < len(energy_order)
+            and eigenvalues[energy_order[stop]] - eigenvalues[energy_order[start]]
+            <= roundoff_tol
+        ):
+            stop += 1
+        group = energy_order[start:stop]
+        if len(group) > 1:
+            current = aligned[:, group]
+            target = previous_vectors[:, group]
+            left, _, right_h = np.linalg.svd(current.conj().T @ target)
+            aligned[:, group] = current @ (left @ right_h)
+        start = stop
+    return aligned
+
+
+def tracked_band_structure(
+    hamiltonian,
+    q_values: np.ndarray,
+    couplings: tuple[float, float, float, float, float],
+) -> np.ndarray:
+    """Track four eigenstates by overlap, exclusively for visualization.
+
+    At each step, all 4! permutations are tested against
+    O[m,n] = abs(<u_m(previous)|u_n(current)>)**2.  The first point is energy
+    sorted; subsequent column labels express continuity, not energy order.
+    At exact degeneracies the previous basis selects a consistent basis
+    within the degenerate eigenspace.  No eigenvalues or q points are changed.
+
+    F(q), occupation, energies, and gap classification use the independent
+    eigvalsh path and must never be computed from this visualization array.
+    """
+    q_values = np.asarray(q_values, dtype=float)
+    if q_values.ndim != 1 or q_values.size == 0 or not np.all(np.isfinite(q_values)):
+        raise ValueError("Tracking requires a nonempty, finite, one-dimensional q mesh.")
+
+    candidates = np.array(list(permutations(range(4))), dtype=int)
+    band_indices = np.arange(4)
+    tracked = np.empty((q_values.size, 4), dtype=float)
+    previous_vectors = None
+
+    for i, q in enumerate(q_values):
+        H = hamiltonian(float(q), *couplings)
+        sorted_reference = _sorted_eigenvalues(H)
+        eigenvalues, eigenvectors = np.linalg.eigh(H)
+        if previous_vectors is not None:
+            overlap = np.abs(previous_vectors.conj().T @ eigenvectors) ** 2
+            scores = np.sum(overlap[band_indices, candidates], axis=1)
+            best = candidates[int(np.argmax(scores))]
+            eigenvalues = eigenvalues[best]
+            eigenvectors = eigenvectors[:, best]
+            eigenvectors = _align_degenerate_eigenvectors(
+                eigenvalues, eigenvectors, previous_vectors
+            )
+
+        tracked[i] = eigenvalues
+        # Mandatory check at EVERY q: tracking only permutes the spectrum.
+        assert np.allclose(
+            np.sort(tracked[i]), sorted_reference,
+            atol=TRACKING_TOL, rtol=TRACKING_TOL,
+        ), f"Tracking changed the spectrum at q={q!r}."
+        # Rotations at degeneracies must still produce eigenvectors of H.
+        assert np.allclose(
+            H @ eigenvectors, eigenvectors * eigenvalues,
+            atol=TRACKING_TOL, rtol=TRACKING_TOL,
+        ), f"Invalid eigenvector continuation at q={q!r}."
+        previous_vectors = eigenvectors
+
+    return tracked
+
+
+def F_old(
+    q: float,
+    Kx_: float,
+    Ky_: float,
+    Kz_: float,
+    Kt_: float,
+    Kw_: float,
+) -> float:
+    """F_OLD(q) = sum of the strictly negative eigvalsh eigenvalues."""
+    eigs = _sorted_eigenvalues(hamiltonian_old(q, Kx_, Ky_, Kz_, Kt_, Kw_))
+    return float(np.sum(eigs[eigs < 0.0]))
+
+
+def F_new(
+    q: float,
+    Kx_: float,
+    Ky_: float,
+    Kz_: float,
+    Kt_: float,
+    Kw_: float,
+) -> float:
+    """F_NEW(q) = sum of the strictly negative eigvalsh eigenvalues."""
+    eigs = _sorted_eigenvalues(hamiltonian_new(q, Kx_, Ky_, Kz_, Kt_, Kw_))
+    return float(np.sum(eigs[eigs < 0.0]))
+
+
+def _trapezoid(y: np.ndarray, x: np.ndarray) -> float:
+    """Use np.trapezoid when available, with a compatibility fallback."""
+    if hasattr(np, "trapezoid"):
+        return float(np.trapezoid(y, x))
+    return float(np.trapz(y, x))
+
+
+def _F_array(F_function, q_values: np.ndarray, couplings: tuple[float, ...]) -> np.ndarray:
+    values = np.array([F_function(float(q), *couplings) for q in q_values], dtype=float)
+    if not np.all(np.isfinite(values)):
+        raise FloatingPointError("F(q) contains non-finite values.")
+    return values
+
+
+def ground_state_energy_from_F(
+    F_values: np.ndarray,
+    q_values: np.ndarray,
+    extended_bz: bool = False,
+) -> tuple[float, float]:
+    """Return (energy per four-site cell, energy per site)."""
+    integral = _trapezoid(F_values, q_values)
+    prefactor_cell = 1.0 / (2.0 * np.pi) if extended_bz else 1.0 / np.pi
+    energy_per_cell = prefactor_cell * integral
+    energy_per_site = energy_per_cell / 4.0
+    return float(energy_per_cell), float(energy_per_site)
+
+
+def spectral_gap_from_bands(bands: np.ndarray, gap_tol: float = GAP_TOL) -> float:
+    """
+    Zero-energy spectral gap on the continuous physical BZ.
+
+    A finite mesh may miss an exact zero between neighboring q points.  If the
+    number of negative eigenvalues changes between adjacent points, continuity
+    of a Hermitian spectrum guarantees a zero-energy crossing in that interval,
+    so the gap is exactly zero.  Otherwise the global positive/negative band
+    edges determine the Fermi-level gap.
+    """
+    if not np.all(np.isfinite(bands)):
+        raise FloatingPointError("Band array contains non-finite values.")
+
+    if np.any(np.abs(bands) <= gap_tol):
+        return 0.0
+
+    negative_count = np.sum(bands < 0.0, axis=1)
+    if np.any(np.diff(negative_count) != 0):
+        return 0.0
+
+    positive = bands[bands > 0.0]
+    negative = bands[bands < 0.0]
+    if positive.size == 0 or negative.size == 0:
+        return 0.0
+
+    gap = float(np.min(positive) - np.max(negative))
+    return max(0.0, gap)
+
+
+def spectral_character(gap: float) -> str:
+    return "gapped" if gap > GAP_TOL else "gapless"
+
+
+def favored_sector(delta_epsilon: float) -> str:
+    if delta_epsilon > ENERGY_TOL:
+        return "OLD"
+    if delta_epsilon < -ENERGY_TOL:
+        return "NEW"
+    return "DEGENERATE"
+
+
+# =============================================================================
+# Minimal numerical checks
+# =============================================================================
+
+
+def run_minimal_tests(
+    couplings: tuple[float, float, float, float, float],
+    q_physical: np.ndarray,
+    q_extended: np.ndarray,
+) -> dict[str, float]:
+    """Run the requested compact consistency checks before final results."""
+    assert len(couplings) == 5
+    assert np.all(np.isfinite(couplings))
+
+    # OLD and NEW receive the exact same coupling tuple by construction.
+    test_q = np.linspace(-np.pi / 2.0, np.pi / 2.0, 21)
+    max_hermiticity_error = 0.0
+
+    for q in test_q:
+        for H in (
+            hamiltonian_old(float(q), *couplings),
+            hamiltonian_new(float(q), *couplings),
+        ):
+            herm_err = float(np.max(np.abs(H - H.conj().T)))
+            max_hermiticity_error = max(max_hermiticity_error, herm_err)
+            assert herm_err < HERMITICITY_TOL
+
+            eigs = np.linalg.eigvalsh(H)
+            assert np.isrealobj(eigs)
+            assert np.all(np.isfinite(eigs))
+
+    F_old_phys = _F_array(F_old, q_physical, couplings)
+    F_new_phys = _F_array(F_new, q_physical, couplings)
+    assert np.all(np.isfinite(F_old_phys))
+    assert np.all(np.isfinite(F_new_phys))
+
+    Ecell_old, Esite_old = ground_state_energy_from_F(F_old_phys, q_physical)
+    Ecell_new, Esite_new = ground_state_energy_from_F(F_new_phys, q_physical)
+    assert np.isfinite(Ecell_old) and np.isfinite(Esite_old)
+    assert np.isfinite(Ecell_new) and np.isfinite(Esite_new)
+    assert np.isclose(Esite_old, Ecell_old / 4.0, atol=1e-13, rtol=1e-13)
+    assert np.isclose(Esite_new, Ecell_new / 4.0, atol=1e-13, rtol=1e-13)
+
+    # Extended-BZ normalization check for both sectors.
+    F_old_ext = _F_array(F_old, q_extended, couplings)
+    F_new_ext = _F_array(F_new, q_extended, couplings)
+    _, Esite_old_ext = ground_state_energy_from_F(F_old_ext, q_extended, extended_bz=True)
+    _, Esite_new_ext = ground_state_energy_from_F(F_new_ext, q_extended, extended_bz=True)
+
+    old_norm_err = abs(Esite_old - Esite_old_ext)
+    new_norm_err = abs(Esite_new - Esite_new_ext)
+    assert old_norm_err < NORMALIZATION_TOL
+    assert new_norm_err < NORMALIZATION_TOL
+
+    return {
+        "max_hermiticity_error": max_hermiticity_error,
+        "old_normalization_error": old_norm_err,
+        "new_normalization_error": new_norm_err,
+    }
+
+
+# =============================================================================
+# Output helpers
+# =============================================================================
+
+
+def _format_q_axis(ax) -> None:
+    ticks = [-np.pi / 2.0, -np.pi / 4.0, 0.0, np.pi / 4.0, np.pi / 2.0]
+    labels = [r"$-\pi/2$", r"$-\pi/4$", "0", r"$\pi/4$", r"$\pi/2$"]
+    ax.set_xlim(-np.pi / 2.0, np.pi / 2.0)
+    ax.set_xticks(ticks, labels)
+    ax.grid(True, alpha=0.25)
+
+
+def plot_dispersions(
+    q_values: np.ndarray,
+    bands_old: np.ndarray,
+    bands_new: np.ndarray,
+    output_path: str | Path = DISPERSION_FILE,
+) -> None:
+    """Plot tracked bands over the physical BZ; colors label eigenstate paths."""
+    fig, axes = plt.subplots(1, 2, figsize=(11.0, 4.6), sharey=True)
+
+    for band in range(4):
+        axes[0].plot(q_values, bands_old[:, band], linewidth=1.5)
+        axes[1].plot(q_values, bands_new[:, band], linewidth=1.5)
+
+    for ax, title in zip(axes, ("OLD gauge", "NEW gauge")):
+        ax.axhline(0.0, linewidth=0.9, linestyle="--")
+        ax.set_xlabel(r"$q = k a_1$")
+        ax.set_title(title)
+        _format_q_axis(ax)
+
+    axes[0].set_ylabel(r"$E(q)$")
+    fig.suptitle("Band dispersions: OLD vs NEW gauge")
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_Fq(
+    q_values: np.ndarray,
+    F_old_values: np.ndarray,
+    F_new_values: np.ndarray,
+    output_path: str | Path = FQ_FILE,
+) -> None:
+    """Save F_OLD(q) and F_NEW(q) on the same physical-BZ panel."""
+    fig, ax = plt.subplots(figsize=(7.2, 4.8))
+    ax.plot(q_values, F_old_values, label="OLD", linewidth=1.8)
+    ax.plot(q_values, F_new_values, label="NEW", linewidth=1.8)
+    ax.set_xlabel(r"$q = k a_1$")
+    ax.set_ylabel(r"$F(q)$")
+    ax.set_title(r"Occupied-band sum $F(q)$: OLD vs NEW")
+    ax.legend()
+    _format_q_axis(ax)
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+
+def save_results_csv(
+    couplings: tuple[float, float, float, float, float],
+    epsilon_old: float,
+    epsilon_new: float,
+    delta_epsilon: float,
+    favored: str,
+    output_path: str | Path = CSV_FILE,
+) -> None:
+    fieldnames = [
+        "Kx",
+        "Ky",
+        "Kz",
+        "Kt",
+        "Kw",
+        "epsilon_old",
+        "epsilon_new",
+        "Delta_epsilon",
+        "favored_sector",
+    ]
+    row = {
+        "Kx": couplings[0],
+        "Ky": couplings[1],
+        "Kz": couplings[2],
+        "Kt": couplings[3],
+        "Kw": couplings[4],
+        "epsilon_old": epsilon_old,
+        "epsilon_new": epsilon_new,
+        "Delta_epsilon": delta_epsilon,
+        "favored_sector": favored,
+    }
+
+    with open(output_path, "w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerow(row)
+
+
+# =============================================================================
+# Main
+# =============================================================================
+
+
+def main() -> None:
+    couplings = (float(Kx), float(Ky), float(Kz), float(Kt), float(Kw))
+    q_values = np.linspace(-np.pi / 2.0, np.pi / 2.0, NQ_PHYSICAL)
+    q_extended = np.linspace(-np.pi, np.pi, NQ_EXTENDED)
+
+    checks = run_minimal_tests(couplings, q_values, q_extended)
+
+    # Energy-sorted eigvalsh bands remain the input to gap diagnostics.
+    bands_old_values = bands_sorted(hamiltonian_old, q_values, couplings)
+    bands_new_values = bands_sorted(hamiltonian_new, q_values, couplings)
+
+    F_old_values = _F_array(F_old, q_values, couplings)
+    F_new_values = _F_array(F_new, q_values, couplings)
+
+    Ecell_old, epsilon_old = ground_state_energy_from_F(F_old_values, q_values)
+    Ecell_new, epsilon_new = ground_state_energy_from_F(F_new_values, q_values)
+
+    delta_epsilon = epsilon_new - epsilon_old
+    favored = favored_sector(delta_epsilon)
+
+    gap_old = spectral_gap_from_bands(bands_old_values)
+    gap_new = spectral_gap_from_bands(bands_new_values)
+    character_old = spectral_character(gap_old)
+    character_new = spectral_character(gap_new)
+
+    epsilon_old_before = epsilon_old
+    epsilon_new_before = epsilon_new
+    delta_epsilon_before = delta_epsilon
+
+    # The independent visualization path only reorders eigenvalues.
+    tracked_old = tracked_band_structure(hamiltonian_old, q_values, couplings)
+    tracked_new = tracked_band_structure(hamiltonian_new, q_values, couplings)
+
+    # Recompute occupation and energy through the ORIGINAL eigvalsh/F path.
+    F_old_after = _F_array(F_old, q_values, couplings)
+    F_new_after = _F_array(F_new, q_values, couplings)
+    assert np.array_equal(F_old_values, F_old_after), "Tracking changed F_OLD(q)."
+    assert np.array_equal(F_new_values, F_new_after), "Tracking changed F_NEW(q)."
+    _, epsilon_old_after = ground_state_energy_from_F(F_old_after, q_values)
+    _, epsilon_new_after = ground_state_energy_from_F(F_new_after, q_values)
+    delta_epsilon_after = epsilon_new_after - epsilon_old_after
+    assert np.isclose(
+        epsilon_old_before, epsilon_old_after, atol=1e-13, rtol=1e-13
+    ), "Tracking changed epsilon_old."
+    assert np.isclose(
+        epsilon_new_before, epsilon_new_after, atol=1e-13, rtol=1e-13
+    ), "Tracking changed epsilon_new."
+    assert np.isclose(
+        delta_epsilon_before, delta_epsilon_after, atol=1e-13, rtol=1e-13
+    ), "Tracking changed Delta_epsilon."
+
+    plot_dispersions(q_values, tracked_old, tracked_new)
+    plot_Fq(q_values, F_old_values, F_new_values)
+    save_results_csv(couplings, epsilon_old, epsilon_new, delta_epsilon, favored)
+
+    print("Minimal numerical checks: PASSED")
+    print("Band tracking checks (spectrum and eigenvectors at every q): PASSED")
+    print("Energy invariance checks (epsilon_old, epsilon_new, Delta_epsilon): PASSED")
+    print(f"max Hermiticity error = {checks['max_hermiticity_error']:.3e}")
+    print(f"OLD physical/extended BZ energy discrepancy = {checks['old_normalization_error']:.3e}")
+    print(f"NEW physical/extended BZ energy discrepancy = {checks['new_normalization_error']:.3e}")
+
+    print("\nCouplings:")
+    print(f"Kx = {Kx:.6f}")
+    print(f"Ky = {Ky:.6f}")
+    print(f"Kz = {Kz:.6f}")
+    print(f"Kt = {Kt:.6f}")
+    print(f"Kw = {Kw:.6f}")
+
+    print("\nSpectral character:")
+    print(f"OLD = {character_old}  (zero-energy band gap = {gap_old:.6f})")
+    print(f"NEW = {character_new}  (zero-energy band gap = {gap_new:.6f})")
+
+    print("\nGround-state energy per site:")
+    print(f"epsilon_old = {epsilon_old:.6f}")
+    print(f"epsilon_new = {epsilon_new:.6f}")
+    print(f"Delta_epsilon = {delta_epsilon:+.6f}")
+    print(f"\nEnergetically favored sector: {favored}")
+
+    print("\nGenerated files:")
+    print(f"- {DISPERSION_FILE}")
+    print(f"- {FQ_FILE}")
+    print(f"- {CSV_FILE}")
+
+    # Explicitly retain the per-cell quantities in the calculation and verify /4.
+    assert np.isclose(epsilon_old, Ecell_old / 4.0, atol=1e-13, rtol=1e-13)
+    assert np.isclose(epsilon_new, Ecell_new / 4.0, atol=1e-13, rtol=1e-13)
+
+
+if __name__ == "__main__":
+    main()
