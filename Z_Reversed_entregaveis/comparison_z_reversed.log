@@ -1,0 +1,189 @@
+{
+  "couplings": {
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0
+  },
+  "convergence": [
+    {
+      "Nq": 1001,
+      "epsilon_old": -1.063544409973365,
+      "epsilon_z": -1.0635444099733649,
+      "Delta_epsilon": 2.220446049250313e-16
+    },
+    {
+      "Nq": 2001,
+      "epsilon_old": -1.0635444099733649,
+      "epsilon_z": -1.0635444099733649,
+      "Delta_epsilon": 0.0
+    },
+    {
+      "Nq": 4001,
+      "epsilon_old": -1.0635444099733649,
+      "epsilon_z": -1.063544409973365,
+      "Delta_epsilon": -2.220446049250313e-16
+    },
+    {
+      "Nq": 8001,
+      "epsilon_old": -1.063544409973365,
+      "epsilon_z": -1.063544409973365,
+      "Delta_epsilon": 0.0
+    },
+    {
+      "Nq": 16001,
+      "epsilon_old": -1.063544409973365,
+      "epsilon_z": -1.063544409973365,
+      "Delta_epsilon": 0.0
+    }
+  ],
+  "stable_decimals_last_three_meshes_capped_at_12": {
+    "epsilon_old": 12,
+    "epsilon_z": 12,
+    "Delta_epsilon": 12
+  },
+  "gaps": {
+    "OLD": {
+      "zero_energy_band_gap": 1.9999999999999978,
+      "min_abs_E": 0.9999999999999989,
+      "q_at_minimum": -2.9929013369185686e-13,
+      "classification": "gapped",
+      "definition": "min(E>0)-max(E<0)=2*min(abs(E)) for this paired spectrum"
+    },
+    "Z-REVERSED": {
+      "zero_energy_band_gap": 1.9999999999999998,
+      "min_abs_E": 0.9999999999999999,
+      "q_at_minimum": 6.763708072191744e-10,
+      "classification": "gapped",
+      "definition": "min(E>0)-max(E<0)=2*min(abs(E)) for this paired spectrum"
+    }
+  },
+  "summary": {
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0,
+    "epsilon_old": -1.063544409973365,
+    "epsilon_z": -1.063544409973365,
+    "Delta_epsilon": 0.0,
+    "gap_old": 1.9999999999999978,
+    "gap_z": 1.9999999999999998,
+    "favored_sector": "TIE"
+  },
+  "adaptive_quadrature": {
+    "OLD": {
+      "epsilon": -1.0635444099733649,
+      "estimated_error_per_site": 2.6633815123850257e-14
+    },
+    "Z-REVERSED": {
+      "epsilon": -1.063544409973365,
+      "estimated_error_per_site": 2.5100136636709256e-14
+    }
+  },
+  "BZ_invariance_errors": {
+    "OLD": {
+      "shifted_BZ": 0.0,
+      "extended_BZ": 2.220446049250313e-16,
+      "adaptive_vs_mesh": 2.220446049250313e-16
+    },
+    "Z-REVERSED": {
+      "shifted_BZ": 2.220446049250313e-16,
+      "extended_BZ": 0.0,
+      "adaptive_vs_mesh": 0.0
+    }
+  },
+  "tracking_spectrum_errors": {
+    "OLD": 4.218847493575595e-15,
+    "Z-REVERSED": 3.9968028886505635e-15
+  },
+  "special_points": {
+    "OLD": {
+      "-pi/2": [
+        -2.23606797749979,
+        -2.23606797749979,
+        2.23606797749979,
+        2.23606797749979
+      ],
+      "-pi/4": [
+        -2.7979326519318137,
+        -1.4736257582079015,
+        1.4736257582079009,
+        2.797932651931813
+      ],
+      "0": [
+        -3.0,
+        -1.0000000000000004,
+        1.0,
+        3.000000000000001
+      ],
+      "pi/4": [
+        -2.797932651931813,
+        -1.4736257582079009,
+        1.4736257582079015,
+        2.7979326519318137
+      ],
+      "pi/2": [
+        -2.23606797749979,
+        -2.23606797749979,
+        2.23606797749979,
+        2.23606797749979
+      ]
+    },
+    "Z-REVERSED": {
+      "-pi/2": [
+        -3.0,
+        -3.0,
+        3.0,
+        3.0
+      ],
+      "-pi/4": [
+        -2.2360679774997894,
+        -2.236067977499789,
+        2.2360679774997894,
+        2.23606797749979
+      ],
+      "0": [
+        -1.0,
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "pi/4": [
+        -2.2360679774997894,
+        -2.236067977499789,
+        2.2360679774997894,
+        2.23606797749979
+      ],
+      "pi/2": [
+        -3.0,
+        -3.0,
+        3.0,
+        3.0
+      ]
+    }
+  },
+  "isotropic": {
+    "elliptic_energy": -1.0635444099733649,
+    "closed_band_max_errors": {
+      "OLD": 5.10702591327572e-15,
+      "Z-REVERSED": 5.329070518200751e-15
+    },
+    "exact_equality_proven": true,
+    "zero_crossings": false,
+    "negative_band_counts": {
+      "OLD": [
+        2
+      ],
+      "Z-REVERSED": [
+        2
+      ]
+    }
+  },
+  "energy_tie_tolerance": 1e-10,
+  "gap_zero_tolerance": 1e-08,
+  "effective_energy_comparison_tolerance": 1e-10,
+  "tracking_used_for_energy": false,
+  "figures_dpi": 300
+}
