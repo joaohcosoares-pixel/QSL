@@ -1,0 +1,1488 @@
+{
+  "status": "PASS",
+  "metadata": {
+    "generated_at_utc": "2026-09-11T16:04:21.009360+00:00",
+    "timestamp": "2026-09-11T16:04:21.009360+00:00",
+    "current_sector": "T-REVERSED",
+    "reference_sector": "OLD",
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0,
+    "q_min": -3.141592653589793,
+    "q_max": 3.141592653589793,
+    "bz_width": 6.283185307179586,
+    "random_cases": 1000,
+    "BZ_width": 6.283185307179586,
+    "N_sites_per_cell": 4,
+    "normalization_formula": "epsilon = integral[-pi,pi] F(q) dq / (8*pi)",
+    "integration_method": "trapezoid on nested grids; independent adaptive scipy.quad",
+    "gap_tolerance": 1e-08,
+    "energy_tolerance": 1e-10,
+    "software_versions": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "sympy": "1.12",
+      "matplotlib": "3.6.3"
+    },
+    "seed": 20260911,
+    "number_random_cases": 1000,
+    "script_sha256": {
+      "audit_explicit_majoranas.py": "49b0d8124dfba8d0fcc06e053503fc1f7f67b65b2c4cb95775ab3dd3014676bd",
+      "build_report_t_reversed.py": "6bc37b4f070f52e9b54b6a23765c83dc1e4447c4a809ba8e0b5b6697810a96f0",
+      "compare_old_vs_t_reversed.py": "495f507b4ed3cd123da99cc294d3ba452be7343adf2e008f2005ee1282bdbb5b",
+      "draw_t_lattice.py": "53178a7b5cea5e4b054d2029f780a88b3f12b7b11784290aefdb55f4d364260b",
+      "quadrupolar_spin_liquid_t_reversed.py": "a7b2ea8f54da3d352e47a9a8e996b598022481b5f1d752d11703db352e492351",
+      "run_t_reversed.py": "92c993ff8db3566d09ab15146846c06fbe77c825b5409925636e0d8c27d3165f",
+      "symbolic_t_audit.py": "d90f968dc8f4cce8dca4dd142da1a38b3463657aa2785a8179e8b552e3fd68e6"
+    },
+    "source_sha256": {
+      "/home/joaohenrique/Pesquisa/Vanuildo (Mat. Condensada)/Quadrupolar Spin Liquid in 1D (c\u00f3pia).pdf": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e",
+      "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_OLD_reference_obsidian.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "/home/joaohenrique/.codex/attachments/bab48a6d-bb75-4528-9c03-7d1ae00f3f7a/pasted-text.txt": "b622d761499531a48552c0819fc4765d3d7abc9565521dbccb8d9d4b58d6f4c0",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topol\u00f3gica/comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topol\u00f3gica/validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/build_report_z_reversed.py": "29ea15d6d3d4dd3fe9e80f4a5482a08c7474976671f08ce281a49df396f14d08",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/compare_old_vs_z_reversed.py": "39bfd60c41e7b0783921473fc37516f9f2cc486503516c7bd1b15d2311187845",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/draw_z_lattice.py": "030f0d5dacd7ff593aa0841b093c35bc2d90f9dc566a61fba0ca68ad28e6d47b",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/package_z_reversed.py": "4a9c0ba161c62d55d659651b12a7de1913472b4c70841199b877898940a5a31f",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/quadrupolar_spin_liquid_z_reversed.py": "7f6e9ecf7c29afdc24cbbd0a8c4e63c5fe600fb52978079a0e8655001da80780"
+    },
+    "local_source_sha256": {
+      "sources/OLD_reference_unchanged.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "sources/legacy_comparison_w_reversed.json": "9adeff056a851c8e59cb54a2d8f92c1db1c754efa6c5327db2bd8321043ac477",
+      "sources/legacy_comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "sources/legacy_validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "sources/original_notes.pdf": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e",
+      "sources/request_original.txt": "b622d761499531a48552c0819fc4765d3d7abc9565521dbccb8d9d4b58d6f4c0"
+    },
+    "cell_translation": "2*a1",
+    "q_definition": "k dot a1",
+    "finite_momentum_rule": "q=pi*ell/Ncell; Ncell independent representatives, each inside PROJECT_BZ",
+    "majorana_convention": "{gamma_i,gamma_j}=2 delta_ij; H=(i/4)gamma^T A gamma; h=iA/2",
+    "Majorana_convention": "{gamma_i,gamma_j}=2 delta_ij; H=(i/4)gamma^T A gamma; h=iA/2",
+    "finite_energy_formula": "E0=-sum(abs(eigvalsh(i*A)))/4; epsilon=E0/(4*Ncell)",
+    "warnings": "Run with -W error; none suppressed"
+  },
+  "symbolic": {
+    "status": "PASS",
+    "primary_BZ": [
+      -3.141592653589793,
+      3.141592653589793
+    ],
+    "metadata": {
+      "generated_at_utc": "2026-09-11T16:04:17.811640+00:00",
+      "timestamp": "2026-09-11T16:04:17.811640+00:00",
+      "current_sector": "T-REVERSED",
+      "reference_sector": "OLD",
+      "Kx": 1.0,
+      "Ky": 1.0,
+      "Kz": 1.0,
+      "Kt": 1.0,
+      "Kw": 1.0,
+      "q_min": -3.141592653589793,
+      "q_max": 3.141592653589793,
+      "bz_width": 6.283185307179586,
+      "random_cases": 1000,
+      "BZ_width": 6.283185307179586,
+      "N_sites_per_cell": 4,
+      "normalization_formula": "epsilon = integral[-pi,pi] F(q) dq / (8*pi)",
+      "integration_method": "trapezoid on nested grids; independent adaptive scipy.quad",
+      "gap_tolerance": 1e-08,
+      "energy_tolerance": 1e-10,
+      "software_versions": {
+        "python": "3.12.3",
+        "numpy": "1.26.4",
+        "scipy": "1.11.4",
+        "sympy": "1.12",
+        "matplotlib": "3.6.3"
+      },
+      "seed": 20260911,
+      "number_random_cases": 1000,
+      "script_sha256": {
+        "audit_explicit_majoranas.py": "49b0d8124dfba8d0fcc06e053503fc1f7f67b65b2c4cb95775ab3dd3014676bd",
+        "build_report_t_reversed.py": "6bc37b4f070f52e9b54b6a23765c83dc1e4447c4a809ba8e0b5b6697810a96f0",
+        "compare_old_vs_t_reversed.py": "495f507b4ed3cd123da99cc294d3ba452be7343adf2e008f2005ee1282bdbb5b",
+        "draw_t_lattice.py": "53178a7b5cea5e4b054d2029f780a88b3f12b7b11784290aefdb55f4d364260b",
+        "quadrupolar_spin_liquid_t_reversed.py": "a7b2ea8f54da3d352e47a9a8e996b598022481b5f1d752d11703db352e492351",
+        "run_t_reversed.py": "92c993ff8db3566d09ab15146846c06fbe77c825b5409925636e0d8c27d3165f",
+        "symbolic_t_audit.py": "d90f968dc8f4cce8dca4dd142da1a38b3463657aa2785a8179e8b552e3fd68e6"
+      },
+      "source_sha256": {
+        "/home/joaohenrique/Pesquisa/Vanuildo (Mat. Condensada)/Quadrupolar Spin Liquid in 1D (c\u00f3pia).pdf": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e",
+        "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_OLD_reference_obsidian.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+        "/home/joaohenrique/.codex/attachments/bab48a6d-bb75-4528-9c03-7d1ae00f3f7a/pasted-text.txt": "b622d761499531a48552c0819fc4765d3d7abc9565521dbccb8d9d4b58d6f4c0",
+        "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topol\u00f3gica/comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+        "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topol\u00f3gica/validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+        "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/build_report_z_reversed.py": "29ea15d6d3d4dd3fe9e80f4a5482a08c7474976671f08ce281a49df396f14d08",
+        "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/compare_old_vs_z_reversed.py": "39bfd60c41e7b0783921473fc37516f9f2cc486503516c7bd1b15d2311187845",
+        "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/draw_z_lattice.py": "030f0d5dacd7ff593aa0841b093c35bc2d90f9dc566a61fba0ca68ad28e6d47b",
+        "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/package_z_reversed.py": "4a9c0ba161c62d55d659651b12a7de1913472b4c70841199b877898940a5a31f",
+        "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/quadrupolar_spin_liquid_z_reversed.py": "7f6e9ecf7c29afdc24cbbd0a8c4e63c5fe600fb52978079a0e8655001da80780"
+      },
+      "local_source_sha256": {
+        "sources/OLD_reference_unchanged.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+        "sources/legacy_comparison_w_reversed.json": "9adeff056a851c8e59cb54a2d8f92c1db1c754efa6c5327db2bd8321043ac477",
+        "sources/legacy_comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+        "sources/legacy_validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+        "sources/original_notes.pdf": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e",
+        "sources/request_original.txt": "b622d761499531a48552c0819fc4765d3d7abc9565521dbccb8d9d4b58d6f4c0"
+      },
+      "cell_translation": "2*a1",
+      "q_definition": "k dot a1",
+      "finite_momentum_rule": "q=pi*ell/Ncell; Ncell independent representatives, each inside PROJECT_BZ",
+      "majorana_convention": "{gamma_i,gamma_j}=2 delta_ij; H=(i/4)gamma^T A gamma; h=iA/2",
+      "Majorana_convention": "{gamma_i,gamma_j}=2 delta_ij; H=(i/4)gamma^T A gamma; h=iA/2",
+      "finite_energy_formula": "E0=-sum(abs(eigvalsh(i*A)))/4; epsilon=E0/(4*Ncell)",
+      "warnings": "Run with -W error; none suppressed"
+    },
+    "source": "Independent Eq.(11) bonds and Eq.(15) signs, PDF pp.3-5",
+    "coefficients": {
+      "OLD": {
+        "f12": "I*(-Kw + Kx*exp(2*I*q))*exp(-I*q)",
+        "f13": "I*(-Kt*exp(2*I*q) - Kz)*exp(-I*q)",
+        "f14": "I*Ky",
+        "f23": "I*Ky",
+        "f24": "I*(-Kt*exp(2*I*q) - Kz)*exp(-I*q)",
+        "f34": "I*(-Kw*exp(2*I*q) + Kx)*exp(-I*q)"
+      },
+      "T-REVERSED": {
+        "f12": "I*(-Kw + Kx*exp(2*I*q))*exp(-I*q)",
+        "f13": "I*(Kt*exp(2*I*q) - Kz)*exp(-I*q)",
+        "f14": "I*Ky",
+        "f23": "I*Ky",
+        "f24": "I*(Kt*exp(2*I*q) - Kz)*exp(-I*q)",
+        "f34": "I*(-Kw*exp(2*I*q) + Kx)*exp(-I*q)"
+      }
+    },
+    "raw_coefficients": {
+      "OLD": {
+        "f12": "-I*Kw*exp(-I*q) + I*Kx*exp(I*q)",
+        "f13": "-I*Kt*exp(I*(q + q2)) - I*Kz*exp(-I*(q - q2))",
+        "f14": "I*Ky*exp(I*q2)",
+        "f23": "I*Ky*exp(I*q2)",
+        "f24": "-I*Kt*exp(I*(q + q2)) - I*Kz*exp(-I*(q - q2))",
+        "f34": "-I*Kw*exp(I*q) + I*Kx*exp(-I*q)"
+      },
+      "T-REVERSED": {
+        "f12": "-I*Kw*exp(-I*q) + I*Kx*exp(I*q)",
+        "f13": "I*Kt*exp(I*(q + q2)) - I*Kz*exp(-I*(q - q2))",
+        "f14": "I*Ky*exp(I*q2)",
+        "f23": "I*Ky*exp(I*q2)",
+        "f24": "I*Kt*exp(I*(q + q2)) - I*Kz*exp(-I*(q - q2))",
+        "f34": "-I*Kw*exp(I*q) + I*Kx*exp(-I*q)"
+      }
+    },
+    "reduced_forms": {
+      "OLD": {
+        "A": "(-Kw - Kx)*sin(q)",
+        "B": "(-Kw + Kx)*cos(q)",
+        "C": "(Kt - Kz)*sin(q)",
+        "D": "(-Kt - Kz)*cos(q)",
+        "S": "Kt**2 + Kw**2 + Kx**2 + Ky**2 + Kz**2 - (-2*Kt*Kz + 2*Kw*Kx)*cos(2*q)",
+        "R": "Ky**2*(-Kt - Kz)**2*cos(q)**2 + (-Kw + Kx)**2*((-Kt - Kz)**2*cos(q)**2 + (Kt - Kz)**2*sin(q)**2)*cos(q)**2"
+      },
+      "T-REVERSED": {
+        "A": "(-Kw - Kx)*sin(q)",
+        "B": "(-Kw + Kx)*cos(q)",
+        "C": "(-Kt - Kz)*sin(q)",
+        "D": "(Kt - Kz)*cos(q)",
+        "S": "Kt**2 + Kw**2 + Kx**2 + Ky**2 + Kz**2 - (2*Kt*Kz + 2*Kw*Kx)*cos(2*q)",
+        "R": "Ky**2*(Kt - Kz)**2*cos(q)**2 + (-Kw + Kx)**2*((-Kt - Kz)**2*sin(q)**2 + (Kt - Kz)**2*cos(q)**2)*cos(q)**2"
+      }
+    },
+    "characteristic_coefficients": [
+      "1",
+      "0",
+      "-2*(A**2 + B**2 + C**2 + D**2 + y**2)",
+      "0",
+      "A**4 + 2*A**2*B**2 + 2*A**2*C**2 + 2*A**2*D**2 + 2*A**2*y**2 + B**4 - 2*B**2*C**2 - 2*B**2*D**2 + 2*B**2*y**2 + C**4 + 2*C**2*D**2 + 2*C**2*y**2 + D**4 - 2*D**2*y**2 + y**4"
+    ],
+    "sector_characteristic_coefficients": {
+      "OLD": [
+        "1",
+        "0",
+        "-2*Kt**2 - 4*Kt*Kz*cos(2*q) - 2*Kw**2 + 4*Kw*Kx*cos(2*q) - 2*Kx**2 - 2*Ky**2 - 2*Kz**2",
+        "0",
+        "Kt**4 + 4*Kt**3*Kz*cos(2*q) - 4*Kt**2*Kw**2*sin(q)**2*cos(q)**2 - 4*Kt**2*Kw**2*cos(q)**4 + 2*Kt**2*Kw**2 + 8*Kt**2*Kw*Kx*sin(q)**2*cos(q)**2 + 8*Kt**2*Kw*Kx*cos(q)**4 - 4*Kt**2*Kw*Kx*cos(2*q) - 4*Kt**2*Kx**2*sin(q)**2*cos(q)**2 - 4*Kt**2*Kx**2*cos(q)**4 + 2*Kt**2*Kx**2 - 4*Kt**2*Ky**2*cos(q)**2 + 2*Kt**2*Ky**2 + 4*Kt**2*Kz**2*cos(2*q)**2 + 2*Kt**2*Kz**2 + 8*Kt*Kw**2*Kz*sin(q)**2*cos(q)**2 - 8*Kt*Kw**2*Kz*cos(q)**4 + 4*Kt*Kw**2*Kz*cos(2*q) - 16*Kt*Kw*Kx*Kz*sin(q)**2*cos(q)**2 + 16*Kt*Kw*Kx*Kz*cos(q)**4 - 8*Kt*Kw*Kx*Kz*cos(2*q)**2 + 8*Kt*Kx**2*Kz*sin(q)**2*cos(q)**2 - 8*Kt*Kx**2*Kz*cos(q)**4 + 4*Kt*Kx**2*Kz*cos(2*q) - 8*Kt*Ky**2*Kz*cos(q)**2 + 4*Kt*Ky**2*Kz*cos(2*q) + 4*Kt*Kz**3*cos(2*q) + Kw**4 - 4*Kw**3*Kx*cos(2*q) + 4*Kw**2*Kx**2*cos(2*q)**2 + 2*Kw**2*Kx**2 + 2*Kw**2*Ky**2 - 4*Kw**2*Kz**2*sin(q)**2*cos(q)**2 - 4*Kw**2*Kz**2*cos(q)**4 + 2*Kw**2*Kz**2 - 4*Kw*Kx**3*cos(2*q) - 4*Kw*Kx*Ky**2*cos(2*q) + 8*Kw*Kx*Kz**2*sin(q)**2*cos(q)**2 + 8*Kw*Kx*Kz**2*cos(q)**4 - 4*Kw*Kx*Kz**2*cos(2*q) + Kx**4 + 2*Kx**2*Ky**2 - 4*Kx**2*Kz**2*sin(q)**2*cos(q)**2 - 4*Kx**2*Kz**2*cos(q)**4 + 2*Kx**2*Kz**2 + Ky**4 - 4*Ky**2*Kz**2*cos(q)**2 + 2*Ky**2*Kz**2 + Kz**4"
+      ],
+      "T-REVERSED": [
+        "1",
+        "0",
+        "-2*Kt**2 + 4*Kt*Kz*cos(2*q) - 2*Kw**2 + 4*Kw*Kx*cos(2*q) - 2*Kx**2 - 2*Ky**2 - 2*Kz**2",
+        "0",
+        "Kt**4 - 4*Kt**3*Kz*cos(2*q) - 4*Kt**2*Kw**2*sin(q)**2*cos(q)**2 - 4*Kt**2*Kw**2*cos(q)**4 + 2*Kt**2*Kw**2 + 8*Kt**2*Kw*Kx*sin(q)**2*cos(q)**2 + 8*Kt**2*Kw*Kx*cos(q)**4 - 4*Kt**2*Kw*Kx*cos(2*q) - 4*Kt**2*Kx**2*sin(q)**2*cos(q)**2 - 4*Kt**2*Kx**2*cos(q)**4 + 2*Kt**2*Kx**2 - 4*Kt**2*Ky**2*cos(q)**2 + 2*Kt**2*Ky**2 + 4*Kt**2*Kz**2*cos(2*q)**2 + 2*Kt**2*Kz**2 - 8*Kt*Kw**2*Kz*sin(q)**2*cos(q)**2 + 8*Kt*Kw**2*Kz*cos(q)**4 - 4*Kt*Kw**2*Kz*cos(2*q) + 16*Kt*Kw*Kx*Kz*sin(q)**2*cos(q)**2 - 16*Kt*Kw*Kx*Kz*cos(q)**4 + 8*Kt*Kw*Kx*Kz*cos(2*q)**2 - 8*Kt*Kx**2*Kz*sin(q)**2*cos(q)**2 + 8*Kt*Kx**2*Kz*cos(q)**4 - 4*Kt*Kx**2*Kz*cos(2*q) + 8*Kt*Ky**2*Kz*cos(q)**2 - 4*Kt*Ky**2*Kz*cos(2*q) - 4*Kt*Kz**3*cos(2*q) + Kw**4 - 4*Kw**3*Kx*cos(2*q) + 4*Kw**2*Kx**2*cos(2*q)**2 + 2*Kw**2*Kx**2 + 2*Kw**2*Ky**2 - 4*Kw**2*Kz**2*sin(q)**2*cos(q)**2 - 4*Kw**2*Kz**2*cos(q)**4 + 2*Kw**2*Kz**2 - 4*Kw*Kx**3*cos(2*q) - 4*Kw*Kx*Ky**2*cos(2*q) + 8*Kw*Kx*Kz**2*sin(q)**2*cos(q)**2 + 8*Kw*Kx*Kz**2*cos(q)**4 - 4*Kw*Kx*Kz**2*cos(2*q) + Kx**4 + 2*Kx**2*Ky**2 - 4*Kx**2*Kz**2*sin(q)**2*cos(q)**2 - 4*Kx**2*Kz**2*cos(q)**4 + 2*Kx**2*Kz**2 + Ky**4 - 4*Ky**2*Kz**2*cos(q)**2 + 2*Ky**2*Kz**2 + Kz**4"
+      ]
+    },
+    "general_eigenvalues": [
+      "-sqrt(S+2sqrt(R))",
+      "-sqrt(S-2sqrt(R))",
+      "sqrt(S-2sqrt(R))",
+      "sqrt(S+2sqrt(R))"
+    ],
+    "isotropic_polynomial": "lambda**4 + lambda**2*(-16*s**2 - 2) + 64*s**4 + 16*s**2 + 1",
+    "isotropic_polynomial_factored": "(-lambda**2 + 8*s**2 + 1)**2",
+    "isotropic_polynomial_coordinate": "s = sin(q)",
+    "isotropic_H": "Matrix([[0, -2*sin(q), -2*sin(q), I], [-2*sin(q), 0, I, -2*sin(q)], [-2*sin(q), -I, 0, 2*sin(q)], [-I, -2*sin(q), 2*sin(q), 0]])",
+    "isotropic_min_abs_E": "1",
+    "isotropic_zero_energy_band_gap": "2",
+    "isotropic_minima": "q=-pi,0,pi",
+    "isotropic_degeneracies": "Twofold positive and twofold negative eigenvalues for every q",
+    "isotropic_eigenvalues": [
+      "-sqrt(1+8*sin(q)^2)",
+      "-sqrt(1+8*sin(q)^2)",
+      "sqrt(1+8*sin(q)^2)",
+      "sqrt(1+8*sin(q)^2)"
+    ],
+    "isotropic_OLD_polynomial": "-16*c**2 + lambda**4 - 10*lambda**2 + 25",
+    "isotropic_exact_bulk_energy": "-3*elliptic_e(8/9)/pi",
+    "isotropic_exact_energy_equality": "F_OLD(2q) = (F_T(q)+F_T(q+pi/2))/2; pi periodicity gives equal bulk integrals",
+    "energy_equality_proof": "Both radicand identities were symbolically proved. F has period pi. Integrate the identity over [-pi,pi]; the doubled argument and shifted term each preserve the integral. The common integral reduces to the complete elliptic integral E(8/9).",
+    "same_q_isospectral": false,
+    "special_momenta": [
+      {
+        "q": "-pi",
+        "exact": [
+          "-1",
+          "-1",
+          "1",
+          "1"
+        ],
+        "eigvalsh": [
+          -1.0,
+          -1.0,
+          1.0,
+          1.0
+        ],
+        "max_abs_error": 0.0
+      },
+      {
+        "q": "-pi/2",
+        "exact": [
+          "-3",
+          "-3",
+          "3",
+          "3"
+        ],
+        "eigvalsh": [
+          -3.0,
+          -3.0,
+          3.0,
+          3.0
+        ],
+        "max_abs_error": 0.0
+      },
+      {
+        "q": "-pi/4",
+        "exact": [
+          "-sqrt(5)",
+          "-sqrt(5)",
+          "sqrt(5)",
+          "sqrt(5)"
+        ],
+        "eigvalsh": [
+          -2.23606797749979,
+          -2.23606797749979,
+          2.2360679774997894,
+          2.23606797749979
+        ],
+        "max_abs_error": 4.440892098500626e-16
+      },
+      {
+        "q": "0",
+        "exact": [
+          "-1",
+          "-1",
+          "1",
+          "1"
+        ],
+        "eigvalsh": [
+          -1.0,
+          -1.0,
+          1.0,
+          1.0
+        ],
+        "max_abs_error": 0.0
+      },
+      {
+        "q": "pi/4",
+        "exact": [
+          "-sqrt(5)",
+          "-sqrt(5)",
+          "sqrt(5)",
+          "sqrt(5)"
+        ],
+        "eigvalsh": [
+          -2.23606797749979,
+          -2.23606797749979,
+          2.2360679774997894,
+          2.23606797749979
+        ],
+        "max_abs_error": 4.440892098500626e-16
+      },
+      {
+        "q": "pi/2",
+        "exact": [
+          "-3",
+          "-3",
+          "3",
+          "3"
+        ],
+        "eigvalsh": [
+          -3.0,
+          -3.0,
+          3.0,
+          3.0
+        ],
+        "max_abs_error": 0.0
+      },
+      {
+        "q": "pi",
+        "exact": [
+          "-1",
+          "-1",
+          "1",
+          "1"
+        ],
+        "eigvalsh": [
+          -1.0,
+          -1.0,
+          1.0,
+          1.0
+        ],
+        "max_abs_error": 0.0
+      }
+    ],
+    "special_momenta_by_sector": {
+      "OLD": [
+        {
+          "q": "-pi",
+          "exact": [
+            "-3",
+            "-1",
+            "1",
+            "3"
+          ],
+          "eigvalsh": [
+            -2.9999999999999996,
+            -1.0,
+            1.0000000000000002,
+            3.0
+          ],
+          "max_abs_error": 4.440892098500626e-16
+        },
+        {
+          "q": "-pi/2",
+          "exact": [
+            "-sqrt(5)",
+            "-sqrt(5)",
+            "sqrt(5)",
+            "sqrt(5)"
+          ],
+          "eigvalsh": [
+            -2.23606797749979,
+            -2.23606797749979,
+            2.23606797749979,
+            2.23606797749979
+          ],
+          "max_abs_error": 0.0
+        },
+        {
+          "q": "-pi/4",
+          "exact": [
+            "-sqrt(2*sqrt(2) + 5)",
+            "-sqrt(5 - 2*sqrt(2))",
+            "sqrt(5 - 2*sqrt(2))",
+            "sqrt(2*sqrt(2) + 5)"
+          ],
+          "eigvalsh": [
+            -2.7979326519318137,
+            -1.4736257582079015,
+            1.4736257582079009,
+            2.797932651931813
+          ],
+          "max_abs_error": 8.881784197001252e-16
+        },
+        {
+          "q": "0",
+          "exact": [
+            "-3",
+            "-1",
+            "1",
+            "3"
+          ],
+          "eigvalsh": [
+            -3.0,
+            -1.0000000000000004,
+            1.0,
+            3.000000000000001
+          ],
+          "max_abs_error": 8.881784197001252e-16
+        },
+        {
+          "q": "pi/4",
+          "exact": [
+            "-sqrt(2*sqrt(2) + 5)",
+            "-sqrt(5 - 2*sqrt(2))",
+            "sqrt(5 - 2*sqrt(2))",
+            "sqrt(2*sqrt(2) + 5)"
+          ],
+          "eigvalsh": [
+            -2.797932651931813,
+            -1.4736257582079009,
+            1.4736257582079015,
+            2.7979326519318137
+          ],
+          "max_abs_error": 8.881784197001252e-16
+        },
+        {
+          "q": "pi/2",
+          "exact": [
+            "-sqrt(5)",
+            "-sqrt(5)",
+            "sqrt(5)",
+            "sqrt(5)"
+          ],
+          "eigvalsh": [
+            -2.23606797749979,
+            -2.23606797749979,
+            2.23606797749979,
+            2.23606797749979
+          ],
+          "max_abs_error": 0.0
+        },
+        {
+          "q": "pi",
+          "exact": [
+            "-3",
+            "-1",
+            "1",
+            "3"
+          ],
+          "eigvalsh": [
+            -3.0,
+            -1.0000000000000002,
+            1.0,
+            2.9999999999999996
+          ],
+          "max_abs_error": 4.440892098500626e-16
+        }
+      ],
+      "T-REVERSED": [
+        {
+          "q": "-pi",
+          "exact": [
+            "-1",
+            "-1",
+            "1",
+            "1"
+          ],
+          "eigvalsh": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0
+          ],
+          "max_abs_error": 0.0
+        },
+        {
+          "q": "-pi/2",
+          "exact": [
+            "-3",
+            "-3",
+            "3",
+            "3"
+          ],
+          "eigvalsh": [
+            -3.0,
+            -3.0,
+            3.0,
+            3.0
+          ],
+          "max_abs_error": 0.0
+        },
+        {
+          "q": "-pi/4",
+          "exact": [
+            "-sqrt(5)",
+            "-sqrt(5)",
+            "sqrt(5)",
+            "sqrt(5)"
+          ],
+          "eigvalsh": [
+            -2.23606797749979,
+            -2.23606797749979,
+            2.2360679774997894,
+            2.23606797749979
+          ],
+          "max_abs_error": 4.440892098500626e-16
+        },
+        {
+          "q": "0",
+          "exact": [
+            "-1",
+            "-1",
+            "1",
+            "1"
+          ],
+          "eigvalsh": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0
+          ],
+          "max_abs_error": 0.0
+        },
+        {
+          "q": "pi/4",
+          "exact": [
+            "-sqrt(5)",
+            "-sqrt(5)",
+            "sqrt(5)",
+            "sqrt(5)"
+          ],
+          "eigvalsh": [
+            -2.23606797749979,
+            -2.23606797749979,
+            2.2360679774997894,
+            2.23606797749979
+          ],
+          "max_abs_error": 4.440892098500626e-16
+        },
+        {
+          "q": "pi/2",
+          "exact": [
+            "-3",
+            "-3",
+            "3",
+            "3"
+          ],
+          "eigvalsh": [
+            -3.0,
+            -3.0,
+            3.0,
+            3.0
+          ],
+          "max_abs_error": 0.0
+        },
+        {
+          "q": "pi",
+          "exact": [
+            "-1",
+            "-1",
+            "1",
+            "1"
+          ],
+          "eigvalsh": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0
+          ],
+          "max_abs_error": 0.0
+        }
+      ]
+    },
+    "max_isotropic_spectrum_error": 5.10702591327572e-15,
+    "independent_production_comparison": {
+      "cases_per_sector": 64,
+      "max_errors": {
+        "RAW": 0.0,
+        "Bloch": 1.790180836524724e-15,
+        "DeltaH": 0.0
+      }
+    },
+    "delta_from_t_bonds": "Matrix([[0, 0, 2*I*Kt*exp(I*q), 0], [0, 0, 0, 2*I*Kt*exp(I*q)], [-2*I*Kt*exp(-I*q), 0, 0, 0], [0, -2*I*Kt*exp(-I*q), 0, 0]])",
+    "delta_support": [
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        2
+      ]
+    ],
+    "literal_eq26_difference": "2*(Kw + Kx)*sin(q)",
+    "normalization_formula": "E0/Nsite = integral[-pi,pi] F(q) dq / (8*pi)",
+    "pairing": "J conjugate(H(q)) J^dagger = -H(q); J^2=-I",
+    "pi_covariance": "H(q+pi) = diag(1,-1,-1,1) H(q) diag(1,-1,-1,1)"
+  },
+  "changed_keys": [
+    "u13t",
+    "u24t"
+  ],
+  "number_random_cases": 1000,
+  "sectors_per_case": 2,
+  "signed_cases": 500,
+  "minimum_absolute_coupling_spacing": 0.02519040492525937,
+  "seed": 20260911,
+  "max_errors": {
+    "unitarity": 2.220446049250313e-16,
+    "raw_geometry_vs_closed": 1.3506446028928517e-15,
+    "raw_cross_phase_positive_q2": 1.3506446028928517e-15,
+    "eq27_vs_independent_closed_bloch": 1.2378112039090628e-15,
+    "q2_cancellation": 1.2378112039090628e-15,
+    "vectorized_bonds": 1.2378112039090628e-15,
+    "hermiticity": 9.155133597044475e-16,
+    "majorana": 1.2378112039090628e-15,
+    "period_2pi": 4.0064286501198265e-15,
+    "covariance_pi": 1.3732700395566711e-15,
+    "spectrum_period_pi": 6.661338147750939e-15,
+    "raw_bloch_spectrum": 7.993605777301127e-15,
+    "same_q_antiunitary": 9.036560719766055e-16,
+    "same_q_pairing": 7.105427357601002e-15,
+    "closed_spectrum": 1.0574874309554616e-14,
+    "characteristic_polynomial_relative": 5.884182101285745e-15,
+    "polynomial_at_eigenvalues_relative": 3.173744817858603e-14,
+    "determinant_polynomial_relative": 4.2062483846745216e-14,
+    "only_t_matrix_difference": 6.280369834735101e-16,
+    "finite_bloch_block": 1.1019522811520253e-15,
+    "finite_raw_block": 1.5100665727558131e-15,
+    "finite_fourier_completeness": 1.1095285525446108e-15,
+    "finite_full_iA_spectrum": 1.5987211554602254e-14,
+    "finite_energy_normalization": 5.551115123125783e-16,
+    "isolated_dimers_finite_absolute_normalization": 0.0,
+    "isolated_dimers_bulk_absolute_normalization": 0.0,
+    "OLD_regression_energy": 2.220446049250313e-16,
+    "OLD_regression_special_spectra": 0.0
+  },
+  "finite_chains": [
+    {
+      "sector": "OLD",
+      "Ncell": 5,
+      "Nsite": 20,
+      "couplings": [
+        1.13,
+        0.79,
+        1.31,
+        0.92,
+        0.67
+      ],
+      "epsilon_real": -1.0600615115467549,
+      "epsilon_bloch": -1.0600615115467553
+    },
+    {
+      "sector": "T-REVERSED",
+      "Ncell": 5,
+      "Nsite": 20,
+      "couplings": [
+        1.13,
+        0.79,
+        1.31,
+        0.92,
+        0.67
+      ],
+      "epsilon_real": -1.0398944227830522,
+      "epsilon_bloch": -1.0398944227830524
+    },
+    {
+      "sector": "OLD",
+      "Ncell": 5,
+      "Nsite": 20,
+      "couplings": [
+        -1.21,
+        0.71,
+        1.41,
+        -0.93,
+        0.53
+      ],
+      "epsilon_real": -1.0504215528179046,
+      "epsilon_bloch": -1.0504215528179044
+    },
+    {
+      "sector": "T-REVERSED",
+      "Ncell": 5,
+      "Nsite": 20,
+      "couplings": [
+        -1.21,
+        0.71,
+        1.41,
+        -0.93,
+        0.53
+      ],
+      "epsilon_real": -0.8960778255465526,
+      "epsilon_bloch": -0.8960778255465531
+    },
+    {
+      "sector": "OLD",
+      "Ncell": 8,
+      "Nsite": 32,
+      "couplings": [
+        1.13,
+        0.79,
+        1.31,
+        0.92,
+        0.67
+      ],
+      "epsilon_real": -1.0600613949798774,
+      "epsilon_bloch": -1.060061394979877
+    },
+    {
+      "sector": "T-REVERSED",
+      "Ncell": 8,
+      "Nsite": 32,
+      "couplings": [
+        1.13,
+        0.79,
+        1.31,
+        0.92,
+        0.67
+      ],
+      "epsilon_real": -1.041948421047002,
+      "epsilon_bloch": -1.0419484210470018
+    },
+    {
+      "sector": "OLD",
+      "Ncell": 8,
+      "Nsite": 32,
+      "couplings": [
+        -1.21,
+        0.71,
+        1.41,
+        -0.93,
+        0.53
+      ],
+      "epsilon_real": -1.0533100376849769,
+      "epsilon_bloch": -1.0533100376849769
+    },
+    {
+      "sector": "T-REVERSED",
+      "Ncell": 8,
+      "Nsite": 32,
+      "couplings": [
+        -1.21,
+        0.71,
+        1.41,
+        -0.93,
+        0.53
+      ],
+      "epsilon_real": -0.8955173071162503,
+      "epsilon_bloch": -0.8955173071162498
+    },
+    {
+      "sector": "OLD",
+      "Ncell": 17,
+      "Nsite": 68,
+      "couplings": [
+        1.13,
+        0.79,
+        1.31,
+        0.92,
+        0.67
+      ],
+      "epsilon_real": -1.060061395001789,
+      "epsilon_bloch": -1.0600613950017892
+    },
+    {
+      "sector": "T-REVERSED",
+      "Ncell": 17,
+      "Nsite": 68,
+      "couplings": [
+        1.13,
+        0.79,
+        1.31,
+        0.92,
+        0.67
+      ],
+      "epsilon_real": -1.0421434294249983,
+      "epsilon_bloch": -1.0421434294249985
+    },
+    {
+      "sector": "OLD",
+      "Ncell": 17,
+      "Nsite": 68,
+      "couplings": [
+        -1.21,
+        0.71,
+        1.41,
+        -0.93,
+        0.53
+      ],
+      "epsilon_real": -1.0530700701630527,
+      "epsilon_bloch": -1.0530700701630524
+    },
+    {
+      "sector": "T-REVERSED",
+      "Ncell": 17,
+      "Nsite": 68,
+      "couplings": [
+        -1.21,
+        0.71,
+        1.41,
+        -0.93,
+        0.53
+      ],
+      "epsilon_real": -0.8955355565146296,
+      "epsilon_bloch": -0.8955355565146292
+    }
+  ],
+  "isolated_dimers_absolute_normalization": [
+    {
+      "family": "x",
+      "sector": "OLD",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "x",
+      "sector": "T-REVERSED",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "y",
+      "sector": "OLD",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "y",
+      "sector": "T-REVERSED",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "z",
+      "sector": "OLD",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "z",
+      "sector": "T-REVERSED",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "t",
+      "sector": "OLD",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "t",
+      "sector": "T-REVERSED",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "w",
+      "sector": "OLD",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    },
+    {
+      "family": "w",
+      "sector": "T-REVERSED",
+      "exact_epsilon": -0.85,
+      "finite_epsilon": -0.85,
+      "bulk_epsilon": -0.85
+    }
+  ],
+  "fluxes": {
+    "OLD": {
+      "W124": 1,
+      "W234": 1,
+      "W123": 1,
+      "W134": 1,
+      "W213": 1,
+      "W143": 1,
+      "W214": 1,
+      "W243": 1
+    },
+    "T-REVERSED": {
+      "W124": 1,
+      "W234": 1,
+      "W123": -1,
+      "W134": -1,
+      "W213": 1,
+      "W143": 1,
+      "W214": -1,
+      "W243": -1
+    }
+  },
+  "plaquette_details": {
+    "OLD": {
+      "W124": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "xzy",
+        "factors": [
+          1,
+          -1,
+          -1
+        ],
+        "expressions": [
+          "u12x",
+          "-u42z",
+          "u41y"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W234": {
+        "path": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "kinds": "yxz",
+        "factors": [
+          1,
+          1,
+          1
+        ],
+        "expressions": [
+          "u23y",
+          "u34x",
+          "u42z"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W123": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "xyt",
+        "factors": [
+          1,
+          1,
+          1
+        ],
+        "expressions": [
+          "u12x",
+          "u23y",
+          "-u13t"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W134": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "txy",
+        "factors": [
+          -1,
+          1,
+          -1
+        ],
+        "expressions": [
+          "u13t",
+          "u34x",
+          "u41y"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W213": {
+        "path": [
+          [
+            -1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            3
+          ],
+          [
+            -1,
+            2
+          ]
+        ],
+        "kinds": "wzy",
+        "factors": [
+          1,
+          -1,
+          -1
+        ],
+        "expressions": [
+          "-u12w",
+          "-u31z",
+          "-u23y"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W143": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            -1,
+            3
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "ywz",
+        "factors": [
+          1,
+          1,
+          1
+        ],
+        "expressions": [
+          "-u41y",
+          "u43w",
+          "u31z"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W214": {
+        "path": [
+          [
+            -1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            -1,
+            2
+          ]
+        ],
+        "kinds": "wyt",
+        "factors": [
+          1,
+          1,
+          1
+        ],
+        "expressions": [
+          "-u12w",
+          "-u41y",
+          "-u24t"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W243": {
+        "path": [
+          [
+            -1,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            -1,
+            3
+          ],
+          [
+            -1,
+            2
+          ]
+        ],
+        "kinds": "twy",
+        "factors": [
+          -1,
+          1,
+          -1
+        ],
+        "expressions": [
+          "u24t",
+          "u43w",
+          "-u23y"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      }
+    },
+    "T-REVERSED": {
+      "W124": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "xzy",
+        "factors": [
+          1,
+          -1,
+          -1
+        ],
+        "expressions": [
+          "u12x",
+          "-u42z",
+          "u41y"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W234": {
+        "path": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "kinds": "yxz",
+        "factors": [
+          1,
+          1,
+          1
+        ],
+        "expressions": [
+          "u23y",
+          "u34x",
+          "u42z"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W123": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "xyt",
+        "factors": [
+          1,
+          1,
+          -1
+        ],
+        "expressions": [
+          "u12x",
+          "u23y",
+          "-u13t"
+        ],
+        "signed_area": 0.5,
+        "flux": -1
+      },
+      "W134": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "txy",
+        "factors": [
+          1,
+          1,
+          -1
+        ],
+        "expressions": [
+          "u13t",
+          "u34x",
+          "u41y"
+        ],
+        "signed_area": 0.5,
+        "flux": -1
+      },
+      "W213": {
+        "path": [
+          [
+            -1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            -1,
+            3
+          ],
+          [
+            -1,
+            2
+          ]
+        ],
+        "kinds": "wzy",
+        "factors": [
+          1,
+          -1,
+          -1
+        ],
+        "expressions": [
+          "-u12w",
+          "-u31z",
+          "-u23y"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W143": {
+        "path": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            -1,
+            3
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "kinds": "ywz",
+        "factors": [
+          1,
+          1,
+          1
+        ],
+        "expressions": [
+          "-u41y",
+          "u43w",
+          "u31z"
+        ],
+        "signed_area": 0.5,
+        "flux": 1
+      },
+      "W214": {
+        "path": [
+          [
+            -1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            -1,
+            2
+          ]
+        ],
+        "kinds": "wyt",
+        "factors": [
+          1,
+          1,
+          -1
+        ],
+        "expressions": [
+          "-u12w",
+          "-u41y",
+          "-u24t"
+        ],
+        "signed_area": 0.5,
+        "flux": -1
+      },
+      "W243": {
+        "path": [
+          [
+            -1,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            -1,
+            3
+          ],
+          [
+            -1,
+            2
+          ]
+        ],
+        "kinds": "twy",
+        "factors": [
+          1,
+          1,
+          -1
+        ],
+        "expressions": [
+          "u24t",
+          "u43w",
+          "-u23y"
+        ],
+        "signed_area": 0.5,
+        "flux": -1
+      }
+    }
+  },
+  "diagonal_gauges_tested": 16,
+  "gauge_equivalence_solutions": [],
+  "mutations": {
+    "wrong_raw_q2_detected_error": 1.4917139584280605,
+    "wrong_eq27_detected_error": 1.4917139584280605,
+    "two_bugs_compensate_at_final_bloch_error": 1.5700924586837752e-16,
+    "raw_test_rejects_compensating_pair": true,
+    "non_t_mutations_rejected": true,
+    "partial_t_reversal_rejected": true,
+    "stored_sign_assignments_tested": 1024,
+    "accepted_sign_assignments": [
+      {
+        "u12x": 1,
+        "u34x": 1,
+        "u23y": 1,
+        "u41y": -1,
+        "u42z": 1,
+        "u31z": 1,
+        "u43w": 1,
+        "u12w": -1,
+        "u13t": 1,
+        "u24t": 1
+      }
+    ]
+  },
+  "OLD_regression": {
+    "epsilon_old": -1.0635444099733649,
+    "prior_audited_epsilon": -1.063544409973365,
+    "new_OLD_recomputed_on_project_BZ_with_equivalent_normalization": true
+  }
+}

@@ -1,0 +1,10 @@
+T-REVERSED explicit 12-Majorana / 64-state audit: PASS
+Clifford algebra maximum error: 0.000e+00
+Vacuum energy per site maximum error: 2.220e-15
+Complete many-body spectrum maximum error: 2.665e-14
+OLD K=(1.0, 1.0, 1.0, 1.0, 1.0) E0/N=-1.062967019772246
+T-REVERSED K=(1.0, 1.0, 1.0, 1.0, 1.0) E0/N=-1.048583770354864
+OLD K=(1.13, 0.79, 1.31, 0.92, 0.67) E0/N=-1.060108523583230
+T-REVERSED K=(1.13, 0.79, 1.31, 0.92, 0.67) E0/N=-1.024274743110539
+OLD K=(-1.21, 0.71, 1.41, -0.93, 0.53) E0/N=-1.070036983742864
+T-REVERSED K=(-1.21, 0.71, 1.41, -0.93, 0.53) E0/N=-0.902506507679779

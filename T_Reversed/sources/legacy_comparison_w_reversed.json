@@ -1,0 +1,1212 @@
+{
+  "metadata": {
+    "generated_at_utc": "2026-09-10T20:29:46.151763+00:00",
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0,
+    "q_min": -3.141592653589793,
+    "q_max": 3.141592653589793,
+    "BZ_width": 6.283185307179586,
+    "N_sites_per_cell": 4,
+    "normalization_formula": "epsilon = integral[-pi,pi] F(q) dq / (8*pi)",
+    "integration_method": "trapezoid on nested grids; independent adaptive scipy.quad",
+    "gap_tolerance": 1e-08,
+    "energy_tolerance": 1e-10,
+    "software_versions": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "sympy": "1.12",
+      "matplotlib": "3.6.3"
+    },
+    "seed": 20260910,
+    "number_random_cases": 1000,
+    "script_sha256": {
+      "build_report_w_reversed.py": "e4ef45f1d3b91fd84725b2c125b8fc42bc80c284b9b41db158ad729924f0a2ac",
+      "compare_old_vs_w_reversed.py": "2dbbffa1e9a1f04e332dc1fabd4aa37c5a331971a7c76c3c7db9626497956929",
+      "draw_w_lattice.py": "d9715c4987f5d84ceeaec0610c80a0e5ff610f6104018863b99b2d3354b8d735",
+      "quadrupolar_spin_liquid_w_reversed.py": "6bb17be928631f1a7837dc1c0124a8d37c213b012212b052688096f342993320",
+      "symbolic_w_audit.py": "8c085c697ae8b026eb1d5ec4a0274e3a0b78d97ab4d8fd33580875534dd4ff71"
+    },
+    "source_sha256": {
+      "/home/joaohenrique/Pesquisa/Vanuildo (Mat. Condensada)/Quadrupolar Spin Liquid in 1D (cópia).pdf": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e",
+      "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_OLD_reference_obsidian.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_Z_Reversed_Obsidian.md": "69d019175272a8e67d5f092b4a6e57b2c8ecae7441f0f82c2ad3d3411dbcdb91",
+      "/home/joaohenrique/.codex/attachments/4235169b-05ad-453f-8009-e21eb3e29f8f/pasted-text.txt": "f6323f7435a82ebb3a2bd77e2eb39466fd5d377aea6a7aab5270f214001174ca",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/build_report_z_reversed.py": "29ea15d6d3d4dd3fe9e80f4a5482a08c7474976671f08ce281a49df396f14d08",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/compare_old_vs_z_reversed.py": "39bfd60c41e7b0783921473fc37516f9f2cc486503516c7bd1b15d2311187845",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/draw_z_lattice.py": "030f0d5dacd7ff593aa0841b093c35bc2d90f9dc566a61fba0ca68ad28e6d47b",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/package_z_reversed.py": "4a9c0ba161c62d55d659651b12a7de1913472b4c70841199b877898940a5a31f",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/quadrupolar_spin_liquid_z_reversed.py": "7f6e9ecf7c29afdc24cbbd0a8c4e63c5fe600fb52978079a0e8655001da80780"
+    },
+    "local_source_sha256": {
+      "sources/OLD_reference_unchanged.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "sources/legacy_comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "sources/legacy_validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "sources/source_snapshot_manifest.json": "9c3dcb31dcdccc6b717ddd68e9485d834e2d082eb40aba46934ac35c9d311eb8"
+    },
+    "source_missing_as_named": "Quadrupolar_Spin_Liquid_Z_Reversed(1).md; available Obsidian version recorded instead",
+    "cell_translation": "2*a1",
+    "q_definition": "k dot a1",
+    "finite_momentum_rule": "q=pi*ell/Ncell; Ncell independent representatives, each inside PROJECT_BZ",
+    "majorana_convention": "{gamma_i,gamma_j}=2 delta_ij; H=(i/4)gamma^T A gamma; h=iA/2",
+    "finite_energy_formula": "E0=-sum(abs(eigvalsh(i*A)))/4; epsilon=E0/(4*Ncell)",
+    "warnings": "Run with -W error; none suppressed"
+  },
+  "script_sha256": {
+    "build_report_w_reversed.py": "e4ef45f1d3b91fd84725b2c125b8fc42bc80c284b9b41db158ad729924f0a2ac",
+    "compare_old_vs_w_reversed.py": "2dbbffa1e9a1f04e332dc1fabd4aa37c5a331971a7c76c3c7db9626497956929",
+    "draw_w_lattice.py": "d9715c4987f5d84ceeaec0610c80a0e5ff610f6104018863b99b2d3354b8d735",
+    "quadrupolar_spin_liquid_w_reversed.py": "6bb17be928631f1a7837dc1c0124a8d37c213b012212b052688096f342993320",
+    "symbolic_w_audit.py": "8c085c697ae8b026eb1d5ec4a0274e3a0b78d97ab4d8fd33580875534dd4ff71"
+  },
+  "couplings": {
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0
+  },
+  "PROJECT_BZ": [
+    -3.141592653589793,
+    3.141592653589793
+  ],
+  "summary": {
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0,
+    "epsilon_old": -1.0635444099733649,
+    "epsilon_w": -0.8388049859310989,
+    "Delta_epsilon": 0.224739424042266,
+    "min_abs_E_old": 0.9999999999999988,
+    "min_abs_E_w": 0.23606797749978856,
+    "zero_energy_band_gap_old": 1.9999999999999976,
+    "zero_energy_band_gap_w": 0.4721359549995771,
+    "epsilon_old_uncertainty": 1e-11,
+    "epsilon_w_uncertainty": 1e-11,
+    "Delta_epsilon_uncertainty": 1e-10,
+    "favored_sector": "OLD",
+    "energy_estimator": "independent adaptive quadrature"
+  },
+  "convergence": [
+    {
+      "Nq": 1001,
+      "epsilon_old": -1.0635444099733649,
+      "epsilon_w": -0.8388049859310989,
+      "Delta_epsilon": 0.224739424042266
+    },
+    {
+      "Nq": 2001,
+      "epsilon_old": -1.063544409973365,
+      "epsilon_w": -0.8388049859310989,
+      "Delta_epsilon": 0.2247394240422662
+    },
+    {
+      "Nq": 4001,
+      "epsilon_old": -1.0635444099733649,
+      "epsilon_w": -0.8388049859310989,
+      "Delta_epsilon": 0.224739424042266
+    },
+    {
+      "Nq": 8001,
+      "epsilon_old": -1.0635444099733649,
+      "epsilon_w": -0.8388049859310989,
+      "Delta_epsilon": 0.224739424042266
+    },
+    {
+      "Nq": 16001,
+      "epsilon_old": -1.0635444099733649,
+      "epsilon_w": -0.8388049859310989,
+      "Delta_epsilon": 0.224739424042266
+    },
+    {
+      "Nq": 32001,
+      "epsilon_old": -1.063544409973365,
+      "epsilon_w": -0.8388049859310989,
+      "Delta_epsilon": 0.2247394240422662
+    }
+  ],
+  "convergence_assessment": {
+    "OLD": {
+      "consecutive_mesh_differences": [
+        2.220446049250313e-16,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        2.220446049250313e-16
+      ],
+      "last_mesh_vs_adaptive": 2.220446049250313e-16,
+      "conservative_absolute_uncertainty": 1e-11,
+      "uncertainty_kind": "empirical conservative estimate, not a rigorous mathematical bound",
+      "resolved_decimal_places_from_uncertainty": 10
+    },
+    "W-REVERSED": {
+      "consecutive_mesh_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "last_mesh_vs_adaptive": 0.0,
+      "conservative_absolute_uncertainty": 1e-11,
+      "uncertainty_kind": "empirical conservative estimate, not a rigorous mathematical bound",
+      "resolved_decimal_places_from_uncertainty": 10
+    }
+  },
+  "adaptive_quadrature": {
+    "OLD": {
+      "epsabs_epsrel": 2e-12,
+      "epsilon": -1.0635444099733649,
+      "estimated_error_per_site": 2.6635303131307975e-14,
+      "segments": [
+        {
+          "left": -3.141592653589793,
+          "right": -1.5707963267948966,
+          "integral_F": -6.682446610277628,
+          "estimated_error_integral": 1.673826201979805e-13
+        },
+        {
+          "left": -1.5707963267948966,
+          "right": 0.0,
+          "integral_F": -6.682446610277628,
+          "estimated_error_integral": 1.6734518698321812e-13
+        },
+        {
+          "left": 0.0,
+          "right": 1.5707963267948966,
+          "integral_F": -6.682446610277628,
+          "estimated_error_integral": 1.6734518698321804e-13
+        },
+        {
+          "left": 1.5707963267948966,
+          "right": 3.141592653589793,
+          "integral_F": -6.68244661027763,
+          "estimated_error_integral": 1.673451869832181e-13
+        }
+      ],
+      "normalization": "integral_{-pi}^{pi} F(q) dq / (8*pi)",
+      "split_points": [
+        -3.141592653589793,
+        -1.5707963267948966,
+        0.0,
+        1.5707963267948966,
+        3.141592653589793
+      ],
+      "tolerance_repeats": [
+        {
+          "epsabs_epsrel": 3e-10,
+          "epsilon": -1.0635444099733649,
+          "estimated_error_per_site": 2.6635303131307975e-14,
+          "segments": [
+            {
+              "left": -3.141592653589793,
+              "right": -1.5707963267948966,
+              "integral_F": -6.682446610277628,
+              "estimated_error_integral": 1.673826201979805e-13
+            },
+            {
+              "left": -1.5707963267948966,
+              "right": 0.0,
+              "integral_F": -6.682446610277628,
+              "estimated_error_integral": 1.6734518698321812e-13
+            },
+            {
+              "left": 0.0,
+              "right": 1.5707963267948966,
+              "integral_F": -6.682446610277628,
+              "estimated_error_integral": 1.6734518698321804e-13
+            },
+            {
+              "left": 1.5707963267948966,
+              "right": 3.141592653589793,
+              "integral_F": -6.68244661027763,
+              "estimated_error_integral": 1.673451869832181e-13
+            }
+          ]
+        },
+        {
+          "epsabs_epsrel": 2e-12,
+          "epsilon": -1.0635444099733649,
+          "estimated_error_per_site": 2.6635303131307975e-14,
+          "segments": [
+            {
+              "left": -3.141592653589793,
+              "right": -1.5707963267948966,
+              "integral_F": -6.682446610277628,
+              "estimated_error_integral": 1.673826201979805e-13
+            },
+            {
+              "left": -1.5707963267948966,
+              "right": 0.0,
+              "integral_F": -6.682446610277628,
+              "estimated_error_integral": 1.6734518698321812e-13
+            },
+            {
+              "left": 0.0,
+              "right": 1.5707963267948966,
+              "integral_F": -6.682446610277628,
+              "estimated_error_integral": 1.6734518698321804e-13
+            },
+            {
+              "left": 1.5707963267948966,
+              "right": 3.141592653589793,
+              "integral_F": -6.68244661027763,
+              "estimated_error_integral": 1.673451869832181e-13
+            }
+          ]
+        }
+      ],
+      "repeat_difference": 0.0
+    },
+    "W-REVERSED": {
+      "epsabs_epsrel": 2e-12,
+      "epsilon": -0.8388049859310989,
+      "estimated_error_per_site": 9.312606085503148e-15,
+      "segments": [
+        {
+          "left": -3.141592653589793,
+          "right": -1.5707963267948966,
+          "integral_F": -5.27036716319126,
+          "estimated_error_integral": 5.851282972798458e-14
+        },
+        {
+          "left": -1.5707963267948966,
+          "right": 0.0,
+          "integral_F": -5.27036716319126,
+          "estimated_error_integral": 5.851282972798458e-14
+        },
+        {
+          "left": 0.0,
+          "right": 1.5707963267948966,
+          "integral_F": -5.27036716319126,
+          "estimated_error_integral": 5.851282972798458e-14
+        },
+        {
+          "left": 1.5707963267948966,
+          "right": 3.141592653589793,
+          "integral_F": -5.27036716319126,
+          "estimated_error_integral": 5.851282972798458e-14
+        }
+      ],
+      "normalization": "integral_{-pi}^{pi} F(q) dq / (8*pi)",
+      "split_points": [
+        -3.141592653589793,
+        -1.5707963267948966,
+        0.0,
+        1.5707963267948966,
+        3.141592653589793
+      ],
+      "tolerance_repeats": [
+        {
+          "epsabs_epsrel": 3e-10,
+          "epsilon": -0.8388049859310989,
+          "estimated_error_per_site": 9.399576243478264e-11,
+          "segments": [
+            {
+              "left": -3.141592653589793,
+              "right": -1.5707963267948966,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.905927111649784e-10
+            },
+            {
+              "left": -1.5707963267948966,
+              "right": 0.0,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.905928757697601e-10
+            },
+            {
+              "left": 0.0,
+              "right": 1.5707963267948966,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.905928757697601e-10
+            },
+            {
+              "left": 1.5707963267948966,
+              "right": 3.141592653589793,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.905927111649784e-10
+            }
+          ]
+        },
+        {
+          "epsabs_epsrel": 2e-12,
+          "epsilon": -0.8388049859310989,
+          "estimated_error_per_site": 9.312606085503148e-15,
+          "segments": [
+            {
+              "left": -3.141592653589793,
+              "right": -1.5707963267948966,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.851282972798458e-14
+            },
+            {
+              "left": -1.5707963267948966,
+              "right": 0.0,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.851282972798458e-14
+            },
+            {
+              "left": 0.0,
+              "right": 1.5707963267948966,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.851282972798458e-14
+            },
+            {
+              "left": 1.5707963267948966,
+              "right": 3.141592653589793,
+              "integral_F": -5.27036716319126,
+              "estimated_error_integral": 5.851282972798458e-14
+            }
+          ]
+        }
+      ],
+      "repeat_difference": 0.0
+    }
+  },
+  "gaps": {
+    "OLD": {
+      "min_abs_E": 0.9999999999999988,
+      "zero_energy_band_gap": 1.9999999999999976,
+      "raw_twice_min_abs_E": 1.9999999999999976,
+      "q_at_minimum": 9.071243662515502e-12,
+      "classification": "gapped",
+      "zero_tolerance": 3.000000000000001e-08,
+      "dense_grid_size": 16001,
+      "refined_minima_count": 1,
+      "candidates": [
+        {
+          "q": -3.141592653589793,
+          "min_abs_E": 1.0,
+          "method": "endpoint"
+        },
+        {
+          "q": 3.141592653589793,
+          "min_abs_E": 1.0,
+          "method": "endpoint"
+        },
+        {
+          "q": -3.141592653589793,
+          "min_abs_E": 1.0,
+          "method": "dense-grid"
+        },
+        {
+          "q": 0.0,
+          "min_abs_E": 1.0,
+          "method": "grid-local-minimum"
+        },
+        {
+          "q": 9.071243662515502e-12,
+          "min_abs_E": 0.9999999999999988,
+          "method": "bounded-continuous-refinement"
+        }
+      ],
+      "possible_cusp_points": [],
+      "majorana_max_error": 0.0,
+      "same_q_pairing_max_error": 4.884981308350689e-15,
+      "definition": "Global zero-energy band gap = 2 min_{q,n}|E_n(q)| by Majorana symmetry on [-pi,pi]",
+      "generic_global_minimum_status": "dense-grid plus continuous refinement; not an interval-arithmetic proof"
+    },
+    "W-REVERSED": {
+      "min_abs_E": 0.23606797749978856,
+      "zero_energy_band_gap": 0.4721359549995771,
+      "raw_twice_min_abs_E": 0.4721359549995771,
+      "q_at_minimum": 0.0,
+      "classification": "gapped",
+      "zero_tolerance": 4.2360679774997935e-08,
+      "dense_grid_size": 16001,
+      "refined_minima_count": 1,
+      "candidates": [
+        {
+          "q": -3.141592653589793,
+          "min_abs_E": 0.23606797749978872,
+          "method": "endpoint"
+        },
+        {
+          "q": 3.141592653589793,
+          "min_abs_E": 0.23606797749978872,
+          "method": "endpoint"
+        },
+        {
+          "q": 0.0,
+          "min_abs_E": 0.23606797749978856,
+          "method": "dense-grid"
+        },
+        {
+          "q": 0.0,
+          "min_abs_E": 0.23606797749978856,
+          "method": "grid-local-minimum"
+        },
+        {
+          "q": 6.128379207797652e-09,
+          "min_abs_E": 0.23606797749978856,
+          "method": "bounded-continuous-refinement"
+        }
+      ],
+      "possible_cusp_points": [],
+      "majorana_max_error": 0.0,
+      "same_q_pairing_max_error": 5.329070518200751e-15,
+      "definition": "Global zero-energy band gap = 2 min_{q,n}|E_n(q)| by Majorana symmetry on [-pi,pi]",
+      "generic_global_minimum_status": "dense-grid plus continuous refinement; not an interval-arithmetic proof"
+    }
+  },
+  "effective_energy_comparison_tolerance": 1e-10,
+  "finite_chain_validation": {
+    "status": "PASS",
+    "rows": [
+      {
+        "sector": "OLD",
+        "Ncell": 5,
+        "Nsite": 20,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 5.329070518200751e-15,
+        "E0_finite": -21.270567365334568,
+        "epsilon_finite": -1.0635283682667285,
+        "epsilon_discrete_bloch": -1.0635283682667285,
+        "finite_discrete_bloch_error": 0.0,
+        "epsilon_bulk_quad": -1.0635444099733649,
+        "finite_minus_bulk": 1.6041706636382713e-05
+      },
+      {
+        "sector": "OLD",
+        "Ncell": 8,
+        "Nsite": 32,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 6.661338147750939e-15,
+        "E0_finite": -34.03341724555956,
+        "epsilon_finite": -1.0635442889237363,
+        "epsilon_discrete_bloch": -1.0635442889237363,
+        "finite_discrete_bloch_error": 0.0,
+        "epsilon_bulk_quad": -1.0635444099733649,
+        "finite_minus_bulk": 1.2104962854309065e-07
+      },
+      {
+        "sector": "OLD",
+        "Ncell": 17,
+        "Nsite": 68,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 7.993605777301127e-15,
+        "E0_finite": -72.32101987817886,
+        "epsilon_finite": -1.0635444099732185,
+        "epsilon_discrete_bloch": -1.0635444099732188,
+        "finite_discrete_bloch_error": 2.220446049250313e-16,
+        "epsilon_bulk_quad": -1.0635444099733649,
+        "finite_minus_bulk": 1.4632739464559563e-13
+      },
+      {
+        "sector": "OLD",
+        "Ncell": 33,
+        "Nsite": 132,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 6.217248937900877e-15,
+        "E0_finite": -140.3878621164842,
+        "epsilon_finite": -1.063544409973365,
+        "epsilon_discrete_bloch": -1.0635444099733646,
+        "finite_discrete_bloch_error": 4.440892098500626e-16,
+        "epsilon_bulk_quad": -1.0635444099733649,
+        "finite_minus_bulk": -2.220446049250313e-16
+      },
+      {
+        "sector": "OLD",
+        "Ncell": 65,
+        "Nsite": 260,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 1.509903313490213e-14,
+        "E0_finite": -276.5215465930749,
+        "epsilon_finite": -1.063544409973365,
+        "epsilon_discrete_bloch": -1.063544409973365,
+        "finite_discrete_bloch_error": 0.0,
+        "epsilon_bulk_quad": -1.0635444099733649,
+        "finite_minus_bulk": -2.220446049250313e-16
+      },
+      {
+        "sector": "OLD",
+        "Ncell": 129,
+        "Nsite": 516,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 1.0658141036401503e-14,
+        "E0_finite": -548.7889155462564,
+        "epsilon_finite": -1.063544409973365,
+        "epsilon_discrete_bloch": -1.0635444099733649,
+        "finite_discrete_bloch_error": 2.220446049250313e-16,
+        "epsilon_bulk_quad": -1.0635444099733649,
+        "finite_minus_bulk": -2.220446049250313e-16
+      },
+      {
+        "sector": "W-REVERSED",
+        "Ncell": 5,
+        "Nsite": 20,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 1.7763568394002505e-14,
+        "E0_finite": -16.782870103700592,
+        "epsilon_finite": -0.8391435051850296,
+        "epsilon_discrete_bloch": -0.8391435051850298,
+        "finite_discrete_bloch_error": 2.220446049250313e-16,
+        "epsilon_bulk_quad": -0.8388049859310989,
+        "finite_minus_bulk": -0.0003385192539306914
+      },
+      {
+        "sector": "W-REVERSED",
+        "Ncell": 8,
+        "Nsite": 32,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 1.2434497875801753e-14,
+        "E0_finite": -26.84147165073598,
+        "epsilon_finite": -0.8387959890854993,
+        "epsilon_discrete_bloch": -0.8387959890854996,
+        "finite_discrete_bloch_error": 2.220446049250313e-16,
+        "epsilon_bulk_quad": -0.8388049859310989,
+        "finite_minus_bulk": 8.996845599518188e-06
+      },
+      {
+        "sector": "W-REVERSED",
+        "Ncell": 17,
+        "Nsite": 68,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 1.554312234475219e-14,
+        "E0_finite": -57.03873907636908,
+        "epsilon_finite": -0.8388049864171924,
+        "epsilon_discrete_bloch": -0.8388049864171921,
+        "finite_discrete_bloch_error": 2.220446049250313e-16,
+        "epsilon_bulk_quad": -0.8388049859310989,
+        "finite_minus_bulk": -4.860934987860333e-10
+      },
+      {
+        "sector": "W-REVERSED",
+        "Ncell": 33,
+        "Nsite": 132,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 1.2323475573339238e-14,
+        "E0_finite": -110.72225814290503,
+        "epsilon_finite": -0.8388049859310988,
+        "epsilon_discrete_bloch": -0.838804985931099,
+        "finite_discrete_bloch_error": 2.220446049250313e-16,
+        "epsilon_bulk_quad": -0.8388049859310989,
+        "finite_minus_bulk": 1.1102230246251565e-16
+      },
+      {
+        "sector": "W-REVERSED",
+        "Ncell": 65,
+        "Nsite": 260,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 2.4868995751603507e-14,
+        "E0_finite": -218.08929634208573,
+        "epsilon_finite": -0.838804985931099,
+        "epsilon_discrete_bloch": -0.8388049859310989,
+        "finite_discrete_bloch_error": 1.1102230246251565e-16,
+        "epsilon_bulk_quad": -0.8388049859310989,
+        "finite_minus_bulk": -1.1102230246251565e-16
+      },
+      {
+        "sector": "W-REVERSED",
+        "Ncell": 129,
+        "Nsite": 516,
+        "antisymmetric_max_error": 0.0,
+        "full_spectrum_max_error": 1.354472090042691e-14,
+        "E0_finite": -432.823372740447,
+        "epsilon_finite": -0.8388049859310988,
+        "epsilon_discrete_bloch": -0.8388049859310988,
+        "finite_discrete_bloch_error": 0.0,
+        "epsilon_bulk_quad": -0.8388049859310989,
+        "finite_minus_bulk": 1.1102230246251565e-16
+      }
+    ],
+    "convergence": {
+      "OLD": {
+        "sizes": [
+          17,
+          33,
+          65,
+          129
+        ],
+        "absolute_bulk_residuals": [
+          1.4632739464559563e-13,
+          2.220446049250313e-16,
+          2.220446049250313e-16,
+          2.220446049250313e-16
+        ],
+        "largest_chain_bulk_residual": 2.220446049250313e-16,
+        "finite_size_acceptance_tolerance": 0.0005317722049866825,
+        "converges_toward_bulk": true,
+        "normalization_factor_2_or_4_excluded": true
+      },
+      "W-REVERSED": {
+        "sizes": [
+          17,
+          33,
+          65,
+          129
+        ],
+        "absolute_bulk_residuals": [
+          4.860934987860333e-10,
+          1.1102230246251565e-16,
+          1.1102230246251565e-16,
+          1.1102230246251565e-16
+        ],
+        "largest_chain_bulk_residual": 1.1102230246251565e-16,
+        "finite_size_acceptance_tolerance": 0.0005,
+        "converges_toward_bulk": true,
+        "normalization_factor_2_or_4_excluded": true
+      }
+    },
+    "max_spectrum_error": 2.4868995751603507e-14,
+    "finite_energy_definition": "E0=-sum(abs(eigvalsh(i*A)))/4; epsilon=E0/(4*Ncell)",
+    "allowed_q": "pi*ell/Ncell, ell=0,...,Ncell-1; translation 2*a1; representatives inside PROJECT_BZ"
+  },
+  "OLD_regression": {
+    "status": "PASS",
+    "source": "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/W_Reversed_entregaveis/sources/legacy_comparison_z_reversed.json",
+    "source_sha256": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+    "previous_epsilon_old": -1.063544409973365,
+    "previous_zero_energy_band_gap_old": 1.9999999999999978,
+    "absolute_errors": {
+      "epsilon_old": 2.220446049250313e-16,
+      "zero_energy_band_gap_old": 2.220446049250313e-16
+    },
+    "scope": "Numerical regression only; previous CSV/JSON are not reused as W physical input"
+  },
+  "tracking_spectrum_errors": {
+    "OLD": 4.218847493575595e-15,
+    "W-REVERSED": 5.329070518200751e-15
+  },
+  "tracking_used_for_physics": false,
+  "tracking_permutations_per_step": 24,
+  "special_points": {
+    "OLD": {
+      "-pi": [
+        -2.9999999999999996,
+        -1.0,
+        1.0000000000000002,
+        3.0
+      ],
+      "-pi/2": [
+        -2.23606797749979,
+        -2.23606797749979,
+        2.23606797749979,
+        2.23606797749979
+      ],
+      "-pi/4": [
+        -2.7979326519318137,
+        -1.4736257582079015,
+        1.4736257582079009,
+        2.797932651931813
+      ],
+      "0": [
+        -3.0,
+        -1.0000000000000004,
+        1.0,
+        3.000000000000001
+      ],
+      "pi/4": [
+        -2.797932651931813,
+        -1.4736257582079009,
+        1.4736257582079015,
+        2.7979326519318137
+      ],
+      "pi/2": [
+        -2.23606797749979,
+        -2.23606797749979,
+        2.23606797749979,
+        2.23606797749979
+      ],
+      "pi": [
+        -3.0,
+        -1.0000000000000002,
+        1.0,
+        2.9999999999999996
+      ]
+    },
+    "W-REVERSED": {
+      "-pi": [
+        -4.236067977499791,
+        -0.23606797749978942,
+        0.23606797749978872,
+        4.236067977499793
+      ],
+      "-pi/2": [
+        -1.0,
+        -1.0,
+        0.9999999999999998,
+        1.0
+      ],
+      "-pi/4": [
+        -3.1462643699419734,
+        -0.3178372451957817,
+        0.31783724519578205,
+        3.146264369941973
+      ],
+      "0": [
+        -4.236067977499791,
+        -0.23606797749978992,
+        0.23606797749978856,
+        4.236067977499792
+      ],
+      "pi/4": [
+        -3.1462643699419734,
+        -0.3178372451957817,
+        0.31783724519578205,
+        3.146264369941973
+      ],
+      "pi/2": [
+        -1.0,
+        -1.0,
+        0.9999999999999998,
+        1.0
+      ],
+      "pi": [
+        -4.236067977499791,
+        -0.23606797749978942,
+        0.23606797749978872,
+        4.236067977499793
+      ]
+    }
+  },
+  "special_points_analytic": {
+    "OLD": {
+      "-pi": [
+        -3.0,
+        -1.0,
+        1.0,
+        3.0
+      ],
+      "-pi/2": [
+        -2.23606797749979,
+        -2.23606797749979,
+        2.23606797749979,
+        2.23606797749979
+      ],
+      "-pi/4": [
+        -2.7979326519318133,
+        -1.4736257582079004,
+        1.4736257582079004,
+        2.7979326519318133
+      ],
+      "0": [
+        -3.0,
+        -1.0,
+        1.0,
+        3.0
+      ],
+      "pi/4": [
+        -2.7979326519318133,
+        -1.4736257582079004,
+        1.4736257582079004,
+        2.7979326519318133
+      ],
+      "pi/2": [
+        -2.23606797749979,
+        -2.23606797749979,
+        2.23606797749979,
+        2.23606797749979
+      ],
+      "pi": [
+        -3.0,
+        -1.0,
+        1.0,
+        3.0
+      ]
+    },
+    "W-REVERSED": {
+      "-pi": [
+        -4.23606797749979,
+        -0.23606797749978878,
+        0.23606797749978878,
+        4.23606797749979
+      ],
+      "-pi/2": [
+        -1.0,
+        -0.9999999999999999,
+        0.9999999999999999,
+        1.0
+      ],
+      "-pi/4": [
+        -3.1462643699419726,
+        -0.31783724519578294,
+        0.31783724519578294,
+        3.1462643699419726
+      ],
+      "0": [
+        -4.23606797749979,
+        -0.23606797749978878,
+        0.23606797749978878,
+        4.23606797749979
+      ],
+      "pi/4": [
+        -3.1462643699419726,
+        -0.31783724519578294,
+        0.31783724519578294,
+        3.1462643699419726
+      ],
+      "pi/2": [
+        -1.0,
+        -0.9999999999999999,
+        0.9999999999999999,
+        1.0
+      ],
+      "pi": [
+        -4.23606797749979,
+        -0.23606797749978878,
+        0.23606797749978878,
+        4.23606797749979
+      ]
+    }
+  },
+  "special_points_analytic_max_errors": {
+    "OLD": 1.1102230246251565e-15,
+    "W-REVERSED": 3.552713678800501e-15
+  },
+  "isotropic": {
+    "status": "PASS",
+    "elliptic_energy_old": -1.0635444099733649,
+    "elliptic_energy_w": -0.8388049859310988,
+    "elliptic_parameter_old": 0.8888888888888888,
+    "elliptic_parameter_w": 0.7999999999999999,
+    "old_invariant_max_error": 8.881784197001252e-16,
+    "w_occupied_sum_max_error": 2.6645352591003757e-15,
+    "w_F_squared_over_four_parameters": {
+      "a": 1.0,
+      "b": 3.9999999999999982
+    },
+    "elliptic_vs_adaptive_errors": {
+      "OLD": 0.0,
+      "W-REVERSED": 1.1102230246251565e-16
+    },
+    "derivation": "OLD S=S0,R=R0*cos(q)^2; W F=-2*sqrt(a+b*cos(q)^2); elliptic parameters computed from derived invariants, not stored energy values"
+  },
+  "consolidated_previous_sectors": {
+    "status": "PASS",
+    "rows": [
+      {
+        "sector": "OLD",
+        "epsilon": -1.0635444099733649,
+        "absolute_energy_uncertainty": 1e-11,
+        "min_abs_E": 0.9999999999999988,
+        "zero_energy_band_gap": 1.9999999999999976,
+        "q_min": -3.141592653589793,
+        "q_max": 3.141592653589793,
+        "status": "recomputed and finite-chain validated",
+        "changed_u": "none",
+        "flux_pattern": "+1,+1,+1,+1,+1,+1,+1,+1",
+        "Delta_epsilon_relative_to_OLD": 0.0,
+        "spectral_classification": "gapped"
+      },
+      {
+        "sector": "W-REVERSED",
+        "epsilon": -0.8388049859310989,
+        "absolute_energy_uncertainty": 1e-11,
+        "min_abs_E": 0.23606797749978856,
+        "zero_energy_band_gap": 0.4721359549995771,
+        "q_min": -3.141592653589793,
+        "q_max": 3.141592653589793,
+        "status": "recomputed and finite-chain validated",
+        "changed_u": "u43w,u12w",
+        "flux_pattern": "+1,+1,+1,+1,-1,-1,-1,-1",
+        "Delta_epsilon_relative_to_OLD": 0.224739424042266,
+        "spectral_classification": "gapped"
+      },
+      {
+        "sector": "Z-REVERSED",
+        "epsilon": -1.063544409973365,
+        "absolute_energy_uncertainty": 1e-11,
+        "min_abs_E": 0.9999999999999999,
+        "zero_energy_band_gap": 1.9999999999999998,
+        "q_min": -3.141592653589793,
+        "q_max": 3.141592653589793,
+        "status": "recomputed and finite-chain validated",
+        "changed_u": "u42z,u31z",
+        "flux_pattern": "-1,-1,+1,+1,-1,-1,+1,+1",
+        "Delta_epsilon_relative_to_OLD": -2.220446049250313e-16,
+        "spectral_classification": "gapped"
+      }
+    ],
+    "Z_gauge": {
+      "u12x": 1,
+      "u34x": 1,
+      "u23y": 1,
+      "u41y": -1,
+      "u42z": -1,
+      "u31z": -1,
+      "u43w": 1,
+      "u12w": -1,
+      "u13t": -1,
+      "u24t": -1
+    },
+    "Z_adaptive_quadrature": {
+      "epsabs_epsrel": 2e-12,
+      "epsilon": -1.063544409973365,
+      "estimated_error_per_site": 2.5100101848490888e-14,
+      "segments": [
+        {
+          "left": -3.141592653589793,
+          "right": -1.5707963267948966,
+          "integral_F": -6.68244661027763,
+          "estimated_error_integral": 1.5770859114314912e-13
+        },
+        {
+          "left": -1.5707963267948966,
+          "right": 0.0,
+          "integral_F": -6.682446610277629,
+          "estimated_error_integral": 1.5770859114314912e-13
+        },
+        {
+          "left": 0.0,
+          "right": 1.5707963267948966,
+          "integral_F": -6.682446610277629,
+          "estimated_error_integral": 1.5770859114314912e-13
+        },
+        {
+          "left": 1.5707963267948966,
+          "right": 3.141592653589793,
+          "integral_F": -6.68244661027763,
+          "estimated_error_integral": 1.5770859114314912e-13
+        }
+      ],
+      "normalization": "integral_{-pi}^{pi} F(q) dq / (8*pi)",
+      "split_points": [
+        -3.141592653589793,
+        -1.5707963267948966,
+        0.0,
+        1.5707963267948966,
+        3.141592653589793
+      ],
+      "tolerance_repeats": [
+        {
+          "epsabs_epsrel": 3e-10,
+          "epsilon": -1.063544409973365,
+          "estimated_error_per_site": 2.5100101848490888e-14,
+          "segments": [
+            {
+              "left": -3.141592653589793,
+              "right": -1.5707963267948966,
+              "integral_F": -6.68244661027763,
+              "estimated_error_integral": 1.5770859114314912e-13
+            },
+            {
+              "left": -1.5707963267948966,
+              "right": 0.0,
+              "integral_F": -6.682446610277629,
+              "estimated_error_integral": 1.5770859114314912e-13
+            },
+            {
+              "left": 0.0,
+              "right": 1.5707963267948966,
+              "integral_F": -6.682446610277629,
+              "estimated_error_integral": 1.5770859114314912e-13
+            },
+            {
+              "left": 1.5707963267948966,
+              "right": 3.141592653589793,
+              "integral_F": -6.68244661027763,
+              "estimated_error_integral": 1.5770859114314912e-13
+            }
+          ]
+        },
+        {
+          "epsabs_epsrel": 2e-12,
+          "epsilon": -1.063544409973365,
+          "estimated_error_per_site": 2.5100101848490888e-14,
+          "segments": [
+            {
+              "left": -3.141592653589793,
+              "right": -1.5707963267948966,
+              "integral_F": -6.68244661027763,
+              "estimated_error_integral": 1.5770859114314912e-13
+            },
+            {
+              "left": -1.5707963267948966,
+              "right": 0.0,
+              "integral_F": -6.682446610277629,
+              "estimated_error_integral": 1.5770859114314912e-13
+            },
+            {
+              "left": 0.0,
+              "right": 1.5707963267948966,
+              "integral_F": -6.682446610277629,
+              "estimated_error_integral": 1.5770859114314912e-13
+            },
+            {
+              "left": 1.5707963267948966,
+              "right": 3.141592653589793,
+              "integral_F": -6.68244661027763,
+              "estimated_error_integral": 1.5770859114314912e-13
+            }
+          ]
+        }
+      ],
+      "repeat_difference": 0.0
+    },
+    "Z_gap": {
+      "min_abs_E": 0.9999999999999999,
+      "zero_energy_band_gap": 1.9999999999999998,
+      "raw_twice_min_abs_E": 1.9999999999999998,
+      "q_at_minimum": -1.2862225230296276e-09,
+      "classification": "gapped",
+      "zero_tolerance": 3.0000000000000004e-08,
+      "dense_grid_size": 16001,
+      "refined_minima_count": 1,
+      "candidates": [
+        {
+          "q": -3.141592653589793,
+          "min_abs_E": 1.0,
+          "method": "endpoint"
+        },
+        {
+          "q": 3.141592653589793,
+          "min_abs_E": 1.0,
+          "method": "endpoint"
+        },
+        {
+          "q": -3.141592653589793,
+          "min_abs_E": 1.0,
+          "method": "dense-grid"
+        },
+        {
+          "q": 0.0,
+          "min_abs_E": 1.0,
+          "method": "grid-local-minimum"
+        },
+        {
+          "q": -1.2862225230296276e-09,
+          "min_abs_E": 0.9999999999999999,
+          "method": "bounded-continuous-refinement"
+        }
+      ],
+      "possible_cusp_points": [],
+      "majorana_max_error": 0.0,
+      "same_q_pairing_max_error": 5.773159728050814e-15,
+      "definition": "Global zero-energy band gap = 2 min_{q,n}|E_n(q)| by Majorana symmetry on [-pi,pi]",
+      "generic_global_minimum_status": "dense-grid plus continuous refinement; not an interval-arithmetic proof"
+    },
+    "Z_finite_chain_validation": {
+      "status": "PASS",
+      "rows": [
+        {
+          "sector": "Z-REVERSED",
+          "Ncell": 5,
+          "Nsite": 20,
+          "antisymmetric_max_error": 0.0,
+          "full_spectrum_max_error": 2.6645352591003757e-15,
+          "E0_finite": -21.239762462425585,
+          "epsilon_finite": -1.0619881231212793,
+          "epsilon_discrete_bloch": -1.0619881231212793,
+          "finite_discrete_bloch_error": 0.0,
+          "epsilon_bulk_quad": -1.063544409973365,
+          "finite_minus_bulk": 0.0015562868520857531
+        },
+        {
+          "sector": "Z-REVERSED",
+          "Ncell": 8,
+          "Nsite": 32,
+          "antisymmetric_max_error": 0.0,
+          "full_spectrum_max_error": 5.329070518200751e-15,
+          "E0_finite": -34.03050555055802,
+          "epsilon_finite": -1.063453298454938,
+          "epsilon_discrete_bloch": -1.063453298454938,
+          "finite_discrete_bloch_error": 0.0,
+          "epsilon_bulk_quad": -1.063544409973365,
+          "finite_minus_bulk": 9.11115184270006e-05
+        },
+        {
+          "sector": "Z-REVERSED",
+          "Ncell": 17,
+          "Nsite": 68,
+          "antisymmetric_max_error": 0.0,
+          "full_spectrum_max_error": 1.9539925233402755e-14,
+          "E0_finite": -72.32101612861857,
+          "epsilon_finite": -1.063544354832626,
+          "epsilon_discrete_bloch": -1.063544354832626,
+          "finite_discrete_bloch_error": 0.0,
+          "epsilon_bulk_quad": -1.063544409973365,
+          "finite_minus_bulk": 5.514073908585715e-08
+        },
+        {
+          "sector": "Z-REVERSED",
+          "Ncell": 33,
+          "Nsite": 132,
+          "antisymmetric_max_error": 0.0,
+          "full_spectrum_max_error": 1.6431300764452317e-14,
+          "E0_finite": -140.38786211644384,
+          "epsilon_finite": -1.0635444099730593,
+          "epsilon_discrete_bloch": -1.0635444099730593,
+          "finite_discrete_bloch_error": 0.0,
+          "epsilon_bulk_quad": -1.063544409973365,
+          "finite_minus_bulk": 3.057554209817681e-13
+        },
+        {
+          "sector": "Z-REVERSED",
+          "Ncell": 65,
+          "Nsite": 260,
+          "antisymmetric_max_error": 0.0,
+          "full_spectrum_max_error": 2.220446049250313e-14,
+          "E0_finite": -276.52154659307496,
+          "epsilon_finite": -1.0635444099733653,
+          "epsilon_discrete_bloch": -1.0635444099733653,
+          "finite_discrete_bloch_error": 0.0,
+          "epsilon_bulk_quad": -1.063544409973365,
+          "finite_minus_bulk": -2.220446049250313e-16
+        },
+        {
+          "sector": "Z-REVERSED",
+          "Ncell": 129,
+          "Nsite": 516,
+          "antisymmetric_max_error": 0.0,
+          "full_spectrum_max_error": 1.687538997430238e-14,
+          "E0_finite": -548.7889155462562,
+          "epsilon_finite": -1.0635444099733649,
+          "epsilon_discrete_bloch": -1.0635444099733653,
+          "finite_discrete_bloch_error": 4.440892098500626e-16,
+          "epsilon_bulk_quad": -1.063544409973365,
+          "finite_minus_bulk": 2.220446049250313e-16
+        }
+      ],
+      "convergence": {
+        "Z-REVERSED": {
+          "sizes": [
+            17,
+            33,
+            65,
+            129
+          ],
+          "absolute_bulk_residuals": [
+            5.514073908585715e-08,
+            3.057554209817681e-13,
+            2.220446049250313e-16,
+            2.220446049250313e-16
+          ],
+          "largest_chain_bulk_residual": 2.220446049250313e-16,
+          "finite_size_acceptance_tolerance": 0.0005317722049866826,
+          "converges_toward_bulk": true,
+          "normalization_factor_2_or_4_excluded": true
+        }
+      },
+      "max_spectrum_error": 2.220446049250313e-14,
+      "finite_energy_definition": "E0=-sum(abs(eigvalsh(i*A)))/4; epsilon=E0/(4*Ncell)",
+      "allowed_q": "pi*ell/Ncell, ell=0,...,Ncell-1; translation 2*a1; representatives inside PROJECT_BZ"
+    },
+    "legacy_reference": "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/W_Reversed_entregaveis/sources/legacy_comparison_z_reversed.json",
+    "legacy_reference_sha256": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+    "legacy_has_original_script_hashes": false,
+    "legacy_energy_regression_error": 0.0,
+    "legacy_gap_regression_error": 0.0,
+    "compatibility": "Z freshly recomputed on [-pi,pi], integral F/(8pi), full finite iA spectrum checked; legacy values serve only regression",
+    "omitted_sectors": {
+      "upper-reversed": "No compatible audited numerical artifact supplied; no result inferred"
+    }
+  },
+  "negative_band_counts_on_plot_grid": {
+    "OLD": [
+      2
+    ],
+    "W-REVERSED": [
+      2
+    ]
+  },
+  "figures_dpi": 300,
+  "normalization": "Nsite=4*Ncell; iA=2h; E0=-sum|eig(iA)|/4; epsilon=integral F/(8pi) on [-pi,pi]"
+}

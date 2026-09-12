@@ -1,0 +1,96 @@
+{
+  "symbolic_assertions": "passed for OLD and Z-REVERSED",
+  "characteristic_polynomial_expanded": "a_I**4 + 2*a_I**2*a_R**2 - 2*a_I**2*b_I**2 - 2*a_I**2*b_R**2 - 2*a_I**2*lambda**2 + 2*a_I**2*y**2 + a_R**4 + 2*a_R**2*b_I**2 + 2*a_R**2*b_R**2 - 2*a_R**2*lambda**2 + 2*a_R**2*y**2 + b_I**4 + 2*b_I**2*b_R**2 - 2*b_I**2*lambda**2 - 2*b_I**2*y**2 + b_R**4 - 2*b_R**2*lambda**2 + 2*b_R**2*y**2 + lambda**4 - 2*lambda**2*y**2 + y**4",
+  "characteristic_polynomial_compact": "-4*a_I**2*(b_I**2 + b_R**2) - 4*b_I**2*y**2 + lambda**4 - lambda**2*(2*a_I**2 + 2*a_R**2 + 2*b_I**2 + 2*b_R**2 + 2*y**2) + (a_I**2 + a_R**2 + b_I**2 + b_R**2 + y**2)**2",
+  "linear_lambda_coefficient": 0,
+  "random_cases": 1000,
+  "sectors_per_case": 2,
+  "seed": 20260908,
+  "asymmetric_couplings": true,
+  "signed_cases": 500,
+  "max_errors": {
+    "unitarity": 2.220446049250313e-16,
+    "raw_formula_vs_geometry": 3.58724037616909e-15,
+    "eq27": 0.0,
+    "bloch_vs_closed": 3.9283700765566935e-15,
+    "q2_cancellation": 3.9283700765566935e-15,
+    "hermiticity": 8.95090418262362e-16,
+    "majorana": 3.9283700765566935e-15,
+    "matrix_period_2pi": 4.021398830883446e-15,
+    "matrix_covariance_pi": 3.9283700765566935e-15,
+    "spectrum_period_pi": 5.329070518200751e-15,
+    "raw_bloch_spectrum": 6.217248937900877e-15,
+    "same_q_pairing": 5.773159728050814e-15,
+    "polynomial_relative": 6.677809960455535e-15,
+    "only_z_matrix_difference": 4.965068306494546e-16,
+    "finite_chain_bloch": 1.1019522811520253e-15,
+    "finite_chain_raw": 1.5100665727558131e-15,
+    "finite_chain_full_spectrum": 3.1086244689504383e-15,
+    "finite_chain_energy_per_site": 2.220446049250313e-16
+  },
+  "finite_chains": [
+    {
+      "sector": "OLD",
+      "cells": 5,
+      "sites": 20,
+      "momenta": 5
+    },
+    {
+      "sector": "Z-REVERSED",
+      "cells": 5,
+      "sites": 20,
+      "momenta": 5
+    },
+    {
+      "sector": "OLD",
+      "cells": 8,
+      "sites": 32,
+      "momenta": 8
+    },
+    {
+      "sector": "Z-REVERSED",
+      "cells": 8,
+      "sites": 32,
+      "momenta": 8
+    },
+    {
+      "sector": "OLD",
+      "cells": 17,
+      "sites": 68,
+      "momenta": 17
+    },
+    {
+      "sector": "Z-REVERSED",
+      "cells": 17,
+      "sites": 68,
+      "momenta": 17
+    }
+  ],
+  "fluxes": {
+    "OLD": {
+      "W124": 1,
+      "W234": 1,
+      "W123": 1,
+      "W134": 1,
+      "W213": 1,
+      "W143": 1,
+      "W214": 1,
+      "W243": 1
+    },
+    "Z-REVERSED": {
+      "W124": -1,
+      "W234": -1,
+      "W123": 1,
+      "W134": 1,
+      "W213": -1,
+      "W143": -1,
+      "W214": 1,
+      "W243": 1
+    }
+  },
+  "gauge_equivalence_solutions": [],
+  "diagonal_gauges_tested": 16,
+  "anti_contamination": "passed",
+  "numpy_version": "1.26.4",
+  "sympy_version": "1.12"
+}

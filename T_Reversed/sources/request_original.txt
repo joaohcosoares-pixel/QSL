@@ -1,0 +1,1657 @@
+ATUE COMO UM FÍSICO TEÓRICO-COMPUTACIONAL SÊNIOR, ESPECIALISTA EM
+MATÉRIA CONDENSADA, E COMO AUDITOR ADVERSARIAL DE SOFTWARE CIENTÍFICO.
+
+Domínios obrigatórios:
+
+- modelos de Kitaev;
+- líquidos de spin quânticos;
+- férmions de Majorana;
+- campos de gauge Z2;
+- modelos exatamente solúveis;
+- momentos multipolares J=3/2;
+- Hamiltonianos quadráticos de Majoranas;
+- transformada de Fourier em redes;
+- Hamiltonianos de Bloch;
+- estruturas de bandas;
+- zonas de Brillouin;
+- álgebra linear simbólica e numérica;
+- NumPy;
+- SymPy;
+- SciPy;
+- Matplotlib;
+- validação computacional independente;
+- métodos numéricos;
+- software científico reproduzível.
+
+============================================================
+MISSÃO
+============================================================
+
+Estamos estudando setores de gauge de um Quadrupolar Spin Liquid in 1D.
+
+Já analisamos outros setores.
+
+AGORA A TAREFA É NOVA E INDEPENDENTE:
+
+PARTIR ESTRITAMENTE DO GAUGE ORIGINAL / OLD / ZERO-FLUX
+
+e
+
+INVERTER EXCLUSIVAMENTE TODAS AS LIGAÇÕES DA FAMÍLIA t.
+
+Este novo setor será chamado:
+
+T-REVERSED.
+
+NÃO partir:
+
+- do Z-REVERSED;
+- do W-REVERSED;
+- do upper-horizontal-reversed;
+- de qualquer setor modificado anteriormente.
+
+A fonte física inicial é SEMPRE o OLD original.
+
+Quero repetir TODO o pipeline científico:
+
+GEOMETRIA ORIGINAL
+→ u_ij
+→ T-REVERSED
+→ FLUXOS
+→ GAUGE EQUIVALENCE
+→ H REAL
+→ FOURIER RAW
+→ Eq.(27)
+→ H_BLOCH
+→ POLINÔMIO CARACTERÍSTICO
+→ AUTOVALORES
+→ DISPERSÕES
+→ GAP
+→ F(q)
+→ INTEGRAL
+→ ENERGIA DO ESTADO FUNDAMENTAL POR SÍTIO
+→ COMPARAÇÃO COM OLD / ZERO-FLUX
+→ CADEIA FINITA
+→ TESTES ADVERSARIAIS
+→ CONVERGÊNCIA
+→ BENCHMARK
+→ GRÁFICOS
+→ CSV / JSON
+→ MARKDOWN COMPLETO.
+
+============================================================
+FONTES
+============================================================
+
+Vou fornecer:
+
+1. PDF original:
+   `Quadrupolar Spin Liquid in 1D (...).pdf`
+
+2. referência OLD:
+   `Quadrupolar_Spin_Liquid_OLD_reference_obsidian.md`
+
+3. códigos já auditados de outros setores apenas como referência de arquitetura;
+
+4. scripts de comparação, plotting e testes anteriores, se disponíveis.
+
+HIERARQUIA DE AUTORIDADE:
+
+1. geometria original do PDF;
+2. gauge OLD do PDF;
+3. Hamiltoniano em espaço real;
+4. convenção de Fourier do PDF;
+5. Eq.(27);
+6. dedução matemática;
+7. testes independentes;
+8. código.
+
+O código NÃO é fonte da física.
+
+============================================================
+NOTAÇÃO
+============================================================
+
+Use exclusivamente:
+
+u_ij,gamma
+
+e
+
+u_ij,gamma = -u_ji,gamma.
+
+A seta
+
+i -> j
+
+significa
+
+u_ij,gamma = +1.
+
+NÃO utilize μ.
+
+Isso vale para:
+
+- código;
+- Markdown;
+- comentários;
+- figuras;
+- nomes de variáveis;
+- tabelas.
+
+============================================================
+1. CONGELAR O OLD
+============================================================
+
+Reconstrua inicialmente o OLD diretamente das fontes.
+
+A configuração esperada é:
+
+u_12,x = +1
+u_34,x = +1
+
+u_23,y = +1
+u_41,y = -1
+
+u_42,z = +1
+u_31,z = +1
+
+u_43,w = +1
+u_12,w = -1
+
+u_13,t = -1
+u_24,t = -1.
+
+NÃO aceite esses números apenas porque aparecem neste prompt.
+
+Confira-os contra:
+
+- figura original;
+- Eq.(15);
+- Hamiltoniano real;
+- referência OLD.
+
+Esse será:
+
+ORIGINAL_GAUGE
+
+ou
+
+OLD_ZERO_FLUX_GAUGE.
+
+============================================================
+2. CONSTRUIR T_REVERSED_GAUGE
+============================================================
+
+Inverta SOMENTE:
+
+u_13,t : -1 -> +1
+
+u_24,t : -1 -> +1.
+
+Portanto, a configuração candidata é:
+
+u_12,x = +1
+u_34,x = +1
+
+u_23,y = +1
+u_41,y = -1
+
+u_42,z = +1
+u_31,z = +1
+
+u_43,w = +1
+u_12,w = -1
+
+u_13,t = +1
+u_24,t = +1.
+
+Antes de continuar, confirme geometricamente que isso corresponde a inverter
+todas e somente as setas da família t.
+
+============================================================
+3. TESTE ANTI-CONTAMINAÇÃO OBRIGATÓRIO
+============================================================
+
+Faça:
+
+changed_keys = {
+    key
+    for key in ORIGINAL_GAUGE
+    if ORIGINAL_GAUGE[key] != T_REVERSED_GAUGE[key]
+}
+
+e EXIJA:
+
+changed_keys == {"u13t", "u24t"}
+
+Além disso:
+
+T_REVERSED_GAUGE["u34x"] == +1
+T_REVERSED_GAUGE["u43w"] == +1
+
+T_REVERSED_GAUGE["u42z"] == +1
+T_REVERSED_GAUGE["u31z"] == +1
+
+Nenhuma ligação x, y, z ou w pode mudar.
+
+Se mudar qualquer outra chave:
+
+RAISE RuntimeError.
+
+============================================================
+4. GEOMETRIA
+============================================================
+
+Construa primeiro a geometria OLD original.
+
+Depois gere uma segunda versão em que apenas os bonds t tenham suas
+orientações invertidas.
+
+NÃO:
+
+- mova sítios;
+- mude sub-redes;
+- altere x;
+- altere y;
+- altere z;
+- altere w;
+- altere a1/a2;
+- altere a célula unitária.
+
+Produza:
+
+qsl_lattice_t_reversed.png
+
+Crie também uma auditoria programática:
+
+OLD_EDGES vs T_REVERSED_EDGES.
+
+Exija que apenas arestas `gamma == "t"` tenham start/end invertidos.
+
+============================================================
+5. FLUXOS DE PLAQUETA
+============================================================
+
+Recalcule TODOS os fluxos relevantes diretamente do grafo.
+
+Use:
+
+W_p = product u_ij
+
+circulando anti-horariamente.
+
+Bloco x:
+
+W124
+W234
+W123
+W134
+
+Bloco w:
+
+W213
+W143
+W214
+W243.
+
+Para cada plaqueta mostre:
+
+- percurso;
+- variável armazenada;
+- direção utilizada;
+- eventual aplicação de u_ji=-u_ij;
+- produto completo;
+- resultado.
+
+Monte:
+
+| plaquette | OLD | T-REVERSED | changed? |
+
+NÃO hard-code os resultados.
+
+============================================================
+6. GAUGE-EQUIVALÊNCIA
+============================================================
+
+Determine se OLD e T-REVERSED são gauge-equivalentes.
+
+Faça duas verificações independentes:
+
+A) comparação de fluxos gauge-invariantes;
+
+B) busca exaustiva:
+
+G = diag(s1,s2,s3,s4)
+
+com
+
+s_i ∈ {-1,+1}.
+
+Teste as 16 possibilidades.
+
+Se os fluxos diferirem:
+
+explique por que isso já demonstra gauge inequivalence.
+
+============================================================
+7. HAMILTONIANO EM ESPAÇO REAL
+============================================================
+
+Parta de:
+
+H =
+i Σ_gamma Σ_<ij>_gamma
+K_gamma u_ij,gamma theta_i^y theta_j^y.
+
+Escreva explicitamente:
+
+H_OLD
+
+e
+
+H_T.
+
+Compare termo a termo.
+
+Somente os termos associados às ligações t podem mudar diretamente de sinal.
+
+Calcule:
+
+Delta H_T = H_T - H_OLD.
+
+Não reutilize f_mn para produzir Delta H.
+
+Derive Delta H diretamente dos bonds t reais.
+
+============================================================
+8. GEOMETRIA COMPUTACIONAL INDEPENDENTE
+============================================================
+
+Implemente uma lista explícita do tipo:
+
+RealSpaceBond(
+    start,
+    end,
+    gamma,
+    u,
+    da1,
+    da2
+)
+
+para toda a geometria.
+
+A bond list será a fonte independente do Hamiltoniano.
+
+Para cada bond documente:
+
+- start;
+- end;
+- gamma;
+- stored u;
+- da1;
+- da2;
+- cell shift;
+- posição interna das sub-redes.
+
+Não comece pelas fórmulas finais.
+
+============================================================
+9. FOURIER RAW
+============================================================
+
+Use ESTRITAMENTE a Fourier do PDF:
+
+theta_m(R)
+=
+sqrt(4/N)
+Σ_{k∈BZ/2}
+[
+ e^{ikR} theta_m(k)
++
+ e^{-ikR} theta_m†(k)
+].
+
+Defina:
+
+q1 = k·a1
+q2 = k·a2.
+
+Cada bond orientado deve contribuir:
+
+i K_gamma u_ij
+exp[i(q1 da1 + q2 da2)].
+
+Construa:
+
+H_RAW_FROM_BONDS.
+
+Depois derive de forma independente as fórmulas fechadas:
+
+f12_raw
+f13_raw
+f14_raw
+f23_raw
+f24_raw
+f34_raw.
+
+Compare matriz por matriz:
+
+H_RAW_FROM_BONDS
+vs
+H_RAW_CLOSED_FORM.
+
+============================================================
+10. PROTEÇÃO CONTRA O ANTIGO BUG DE q2
+============================================================
+
+Já existiu neste projeto um bug no qual:
+
+- o sinal de q2 no RAW estava errado;
+- Eq.(27) era aplicada ao contrário;
+- os dois erros se cancelavam.
+
+Portanto:
+
+NÃO aceite apenas que H_Bloch final esteja correto.
+
+Teste RAW independentemente ANTES da Eq.(27).
+
+As cross-chain amplitudes devem ter suas fases q2 derivadas da geometria.
+
+Se aparecer cancelamento “mágico” de dois erros:
+
+FAIL.
+
+============================================================
+11. Eq.(27)
+============================================================
+
+Use a transformação do projeto:
+
+U(q2)
+=
+diag(
+1,
+1,
+e^{-iq2},
+e^{-iq2}
+).
+
+Com a convenção:
+
+Theta_raw = U Theta_Bloch,
+
+portanto:
+
+H_Bloch = U† H_raw U.
+
+Verifique simbolicamente:
+
+U†U = I.
+
+Depois verifique:
+
+∂H_Bloch/∂q2 = 0
+
+elemento por elemento.
+
+============================================================
+12. DERIVAR OS NOVOS COEFICIENTES
+============================================================
+
+Extraia do H_Bloch os seis:
+
+f12
+f13
+f14
+f23
+f24
+f34.
+
+Não simplesmente substitua Kt -> -Kt numa fórmula copiada.
+
+A fórmula deve emergir de:
+
+geometry
+→ H_raw
+→ Eq.(27)
+→ extraction.
+
+Depois faça uma tabela:
+
+| coefficient | OLD | T-REVERSED | changed? | contributing bonds |
+
+============================================================
+SANITY CHECK IMPORTANTE
+============================================================
+
+No OLD, as ligações t aparecem em:
+
+f13
+
+e
+
+f24.
+
+Portanto é esperado que a inversão de t altere diretamente somente:
+
+f13
+f24
+
+enquanto:
+
+f12
+f14
+f23
+f34
+
+permaneçam iguais.
+
+ISSO É APENAS UM SANITY CHECK.
+
+Derive primeiro.
+
+Se f12 ou f34 mudar diretamente:
+
+PARE.
+
+Se f14 ou f23 mudar diretamente:
+
+PARE.
+
+============================================================
+13. SINAL ESPERADO — APENAS PARA AUDITORIA
+============================================================
+
+No OLD:
+
+f13_old =
+-i [Kt e^{+iq} + Kz e^{-iq}]
+
+f24_old =
+-i [Kt e^{+iq} + Kz e^{-iq}].
+
+Como u13,t e u24,t trocam de -1 para +1, espera-se estruturalmente algo do
+tipo:
+
+f13_T =
++i Kt e^{+iq} - i Kz e^{-iq}
+
+f24_T =
++i Kt e^{+iq} - i Kz e^{-iq}.
+
+NÃO use estas expressões como fonte.
+
+Confirme ou refute pela bond list.
+
+============================================================
+14. HAMILTONIANO FINAL
+============================================================
+
+Monte:
+
+H_T(q)=
+
+[0       f12      f13      f14]
+[f12*    0        f23      f24]
+[f13*    f23*     0        f34]
+[f14*    f24*     f34*     0  ].
+
+Verifique:
+
+H_T† = H_T.
+
+Determine independentemente as relações entre coeficientes.
+
+Investigue:
+
+f23 ?= f14
+
+f24 ?= f13
+
+f34 ?= ±f12*.
+
+Não imponha relações vindas de setores anteriores.
+
+============================================================
+15. SIMETRIAS
+============================================================
+
+Teste e derive:
+
+H(-q) ?= -H(q)*
+
+Spec[-q] ?= -Spec[q]
+
+pairing ±E no mesmo q?
+
+H(q+2π) ?
+
+H(q+π) ?
+
+Existe matriz G_pi tal que:
+
+H(q+π)=G_pi H(q)G_pi† ?
+
+Determine isso para T, não copie de Z.
+
+============================================================
+16. POLINÔMIO CARACTERÍSTICO
+============================================================
+
+Calcule:
+
+P_T(λ,q)
+=
+det(λI-H_T(q)).
+
+Obtenha os coeficientes:
+
+λ^4
+λ^3
+λ^2
+λ
+λ^0.
+
+Determine se:
+
+P_T(-λ,q)=P_T(λ,q).
+
+Se houver termo linear:
+
+mostre-o.
+
+Se houver ± pairing:
+
+demonstre-o.
+
+Se não houver:
+
+não force.
+
+Faça também uma implementação numérica independente para verificar:
+
+P_T(E_n)=0
+
+para autovalores aleatórios.
+
+============================================================
+17. CASO ISOTRÓPICO
+============================================================
+
+Use:
+
+Kx=Ky=Kz=Kt=Kw=1.
+
+Tente derivar analiticamente:
+
+H_T(q)
+
+P_T(λ,q)
+
+e os autovalores E_T,n(q).
+
+Procure:
+
+- degenerescências;
+- simplificações;
+- relações com OLD;
+- possíveis transformações de momentum;
+- possível igualdade energética.
+
+NÃO presuma degenerescência.
+
+============================================================
+18. PONTOS ESPECIAIS
+============================================================
+
+Calcule explicitamente:
+
+q = -π
+q = -π/2
+q = -π/4
+q = 0
+q = π/4
+q = π/2
+q = π.
+
+Monte:
+
+| q | OLD eigenvalues | T-REVERSED eigenvalues |
+
+Use valores exatos quando possível:
+
+sqrt(...)
+etc.
+
+Compare depois com np.linalg.eigvalsh.
+
+============================================================
+19. INTERVALO PRINCIPAL
+============================================================
+
+A convenção atual solicitada pelo orientador é:
+
+q ∈ [-π,+π].
+
+Use isso como intervalo PRINCIPAL em:
+
+- dispersões;
+- F(q);
+- gap;
+- integração;
+- convergência;
+- tabelas;
+- gráficos.
+
+Defina:
+
+PROJECT_BZ = (-np.pi, np.pi).
+
+NÃO volte para [-π/2,π/2] como resultado principal.
+
+============================================================
+20. NORMALIZAÇÃO DA ENERGIA
+============================================================
+
+Não copie cegamente o setor Z.
+
+Revalide a contagem.
+
+No pipeline atual espera-se, para a convenção de dupla cobertura usada no
+projeto:
+
+E_cell =
+(1/(2π))
+∫_{-π}^{π} F(q)dq
+
+e
+
+epsilon =
+E_cell / 4
+
+=
+
+(1/(8π))
+∫_{-π}^{π} F(q)dq.
+
+MAS NÃO aceite isso como axioma.
+
+Confirme com a soma discreta de momentos e cadeia finita.
+
+============================================================
+21. TESTE DE DUPLA COBERTURA
+============================================================
+
+Como o intervalo [-π,π] pode conter duas cópias do espectro associado à célula
+de comprimento 2a1:
+
+demonstre explicitamente:
+
+- número de células;
+- número de sítios;
+- número independente de blocos de momentum;
+- quantidade de amostras em [-π,π];
+- peso de cada bloco.
+
+Compare:
+
+A) soma discreta na cadeia finita;
+
+B) integral em [-π,π];
+
+C) integral em um intervalo de período espectral reduzido, se existir.
+
+Tudo deve produzir a mesma energia por sítio.
+
+============================================================
+22. DISPERSÕES
+============================================================
+
+Calcule:
+
+E_OLD,n(q)
+
+E_T,n(q)
+
+em:
+
+q ∈ [-π,π].
+
+Para física:
+
+np.linalg.eigvalsh.
+
+Para gráfico:
+
+np.linalg.eigh
++
+tracking por overlap.
+
+Overlap:
+
+O_mn =
+|<u_m(q_i)|u_n(q_{i+1})>|².
+
+Com 4 bandas:
+
+teste as 24 permutações.
+
+Verifique:
+
+sort(tracked_bands(q))
+==
+eigvalsh(H(q))
+
+para todo q.
+
+Tracking NUNCA entra na energia.
+
+============================================================
+23. GAP
+============================================================
+
+Calcule:
+
+min_abs_E
+
+e
+
+zero_energy_band_gap = 2*min_abs_E
+
+em todo [-π,π].
+
+Use:
+
+- grid denso;
+- refinamento local;
+- bordas;
+- detecção de crossing.
+
+Classifique:
+
+gapped
+ou
+gapless.
+
+Não determine isso visualmente.
+
+============================================================
+24. F(q)
+============================================================
+
+Para I∈{OLD,T}:
+
+F_I(q)
+=
+Σ_{E_{I,n}(q)<0}
+E_{I,n}(q).
+
+Use exclusivamente os autovalores de:
+
+np.linalg.eigvalsh.
+
+Produza:
+
+Fq_old_vs_t_reversed.png
+
+em:
+
+[-π,π].
+
+Se houver cúspides:
+
+não suavize.
+
+============================================================
+25. ENERGIA DO ESTADO FUNDAMENTAL
+============================================================
+
+Calcule:
+
+epsilon_old
+
+epsilon_t
+
+Delta_epsilon_t
+=
+epsilon_t - epsilon_old.
+
+Interpretar:
+
+Delta > numerical_uncertainty:
+    OLD favored
+
+Delta < -numerical_uncertainty:
+    T-REVERSED favored
+
+|Delta| <= uncertainty:
+    DEGNERATE / UNRESOLVED NUMERICALLY.
+
+Não decida pelo gap.
+
+============================================================
+26. CONVERGÊNCIA
+============================================================
+
+Calcule em:
+
+Nq =
+1001
+2001
+4001
+8001
+16001
+32001
+
+se razoável.
+
+Produza:
+
+| Nq | epsilon_old | epsilon_t | Delta |
+
+Além disso use quadratura adaptativa independente.
+
+Estime erro através de diferenças entre refinamentos, não apenas número de
+casas decimais iguais.
+
+============================================================
+27. CADEIA FINITA INDEPENDENTE
+============================================================
+
+Construa diretamente:
+
+H =
+(i/4) γ^T A γ
+
+com:
+
+A_ij = 2K_gamma u_ij
+A_ji = -A_ij.
+
+Faça para:
+
+OLD
+T-REVERSED.
+
+Não utilize os f_mn para construir A.
+
+Compare blocos de Fourier com H_Bloch.
+
+Teste pelo menos:
+
+Ncell = 5
+8
+17
+
+para matriz/espectro.
+
+Depois:
+
+17
+33
+65
+129
+
+para energia.
+
+Verifique:
+
+E0_finite/(4Ncell)
+→ epsilon_bulk.
+
+============================================================
+28. TESTE DO ESPECTRO FINITO COMPLETO
+============================================================
+
+Não compare apenas blocos individuais.
+
+Diagonalize toda a matriz:
+
+h_real = iA/2
+
+e compare todo o conjunto de autovalores com a união dos blocos de Bloch nos
+momentos permitidos.
+
+Erro esperado:
+
+~1e-12 ou melhor.
+
+============================================================
+29. TESTES ALEATÓRIOS ADVERSARIAIS
+============================================================
+
+Execute pelo menos 1000 casos.
+
+Use:
+
+- couplings assimétricos;
+- valores positivos;
+- pelo menos metade com sinais mistos;
+- q1 aleatório;
+- q2 aleatório.
+
+Para OLD e T teste:
+
+- RAW bond-list vs RAW closed;
+- Eq.(27);
+- q2 cancellation;
+- Hermiticity;
+- Majorana symmetry;
+- periodicity;
+- polynomial;
+- eigenvalues;
+- only-t-changes;
+- gauge constraints.
+
+Use seed fixa apenas para reprodutibilidade.
+
+============================================================
+30. TESTE ESPECÍFICO "ONLY T CHANGES"
+============================================================
+
+Derive independentemente:
+
+DeltaH_T
+=
+H_T-H_OLD
+
+usando SOMENTE os bonds reais t.
+
+Depois compare com a diferença entre os dois Hamiltonianos completos.
+
+NÃO use:
+
+f13_T-f13_old
+
+como definição do teste.
+
+Isso seria circular.
+
+Erro esperado:
+
+~ precisão de máquina.
+
+============================================================
+31. TESTE DE REGRESSÃO DO OLD
+============================================================
+
+OLD é referência congelada.
+
+Nenhuma alteração feita para implementar T pode mudar:
+
+- fluxos OLD;
+- H_old;
+- bandas OLD;
+- F_old;
+- epsilon_old.
+
+Compare contra benchmarks OLD previamente auditados.
+
+Se OLD mudar:
+
+FAIL.
+
+============================================================
+32. BENCHMARK COMPUTACIONAL
+============================================================
+
+Meça separadamente:
+
+1. 1000 construções de H(q);
+2. 1000 diagonalizações 4x4;
+3. bandas em 2001 q;
+4. bandas em 16001 q;
+5. F(q) em 16001 q;
+6. integral em 16001 q;
+7. cadeias finitas;
+8. suíte de 1000 casos.
+
+Use:
+
+time.perf_counter().
+
+Faça warm-up.
+
+Repita pelo menos 5 vezes.
+
+Reporte:
+
+min
+median
+max.
+
+Não sacrifique rigor por velocidade.
+
+Produza:
+
+benchmark_t_reversed.json.
+
+============================================================
+33. COMPARAÇÃO PRINCIPAL
+============================================================
+
+Monte tabela:
+
+| quantity | OLD / zero-flux | T-REVERSED |
+|---|---:|---:|
+| changed u | none | ... |
+| flux pattern | ... | ... |
+| min |E| | ... | ... |
+| zero-energy gap | ... | ... |
+| spectral character | ... | ... |
+| epsilon | ... | ... |
+
+E:
+
+Delta epsilon = ...
+
+Favored sector = ...
+
+============================================================
+34. COMPARAÇÃO COM SETORES ANTERIORES
+============================================================
+
+SE os resultados auditados anteriores forem fornecidos e estiverem todos na
+MESMA convenção q∈[-π,π] e mesma normalização:
+
+compare também:
+
+- OLD / zero-flux;
+- upper-horizontal-reversed;
+- Z-REVERSED;
+- W-REVERSED;
+- T-REVERSED.
+
+Se algum arquivo anterior usar [-π/2,π/2]:
+
+RECALCULE antes de comparar.
+
+Não misture normalizações.
+
+Produza opcionalmente:
+
+all_gauge_sectors_comparison.csv.
+
+============================================================
+35. FIGURAS OBRIGATÓRIAS
+============================================================
+
+Gere:
+
+1. qsl_lattice_t_reversed.png
+
+2. dispersion_old_vs_t_reversed.png
+
+3. Fq_old_vs_t_reversed.png.
+
+Para dispersões:
+
+q ∈ [-π,π].
+
+Ticks:
+
+-π
+-π/2
+0
+π/2
+π.
+
+Pode incluir ±π/4.
+
+Mesma escala vertical.
+
+Linha E=0.
+
+300 dpi.
+
+============================================================
+36. CSV
+============================================================
+
+Gere:
+
+ground_state_energy_old_vs_t.csv
+
+com:
+
+Kx
+Ky
+Kz
+Kt
+Kw
+epsilon_old
+epsilon_t
+Delta_epsilon
+gap_old
+gap_t
+min_abs_E_old
+min_abs_E_t
+favored_sector.
+
+============================================================
+37. CONVERGÊNCIA CSV
+============================================================
+
+Gere:
+
+energy_convergence_old_vs_t.csv
+
+com:
+
+Nq
+epsilon_old
+epsilon_t
+Delta_epsilon
+error_estimate_old
+error_estimate_t.
+
+============================================================
+38. JSONS
+============================================================
+
+Gere:
+
+validation_t_reversed.json
+
+comparison_t_reversed.json
+
+benchmark_t_reversed.json.
+
+Inclua metadata:
+
+q_definition
+q_min
+q_max
+bz_width
+N_sites_per_cell
+normalization_formula
+Majorana_convention
+integration_method
+software_versions
+seed
+random_cases
+timestamp
+SHA256 dos scripts científicos.
+
+============================================================
+39. MARKDOWN FINAL COMPLETO
+============================================================
+
+Gere:
+
+Quadrupolar_Spin_Liquid_T_Reversed.md
+
+O Markdown deve ser autocontido.
+
+Estrutura obrigatória:
+
+# Quadrupolar Spin Liquid in 1D — T-Reversed Gauge
+
+## 1. Original model and geometry
+## 2. OLD / zero-flux gauge
+## 3. Definition of T-REVERSED
+## 4. Bond-by-bond audit
+## 5. Plaquette fluxes
+## 6. Gauge equivalence
+## 7. Real-space Hamiltonian
+## 8. Delta H from t bonds
+## 9. Fourier convention
+## 10. RAW Fourier Hamiltonian
+## 11. Eq.(27)
+## 12. Final Bloch Hamiltonian
+## 13. OLD vs T coefficient table
+## 14. Symmetries
+## 15. Characteristic polynomial
+## 16. Isotropic analytic solution
+## 17. Special-momentum spectra
+## 18. Band dispersions on [-pi,pi]
+## 19. Gap analysis
+## 20. Occupied-band sum F(q)
+## 21. Ground-state energy per site
+## 22. BZ normalization
+## 23. Convergence
+## 24. Finite-chain validation
+## 25. Randomized adversarial validation
+## 26. Performance benchmark
+## 27. OLD vs T comparison
+## 28. Consolidated gauge-sector comparison
+## 29. Physical interpretation
+## 30. What is proven
+## 31. What remains open
+## 32. Final verdict
+
+============================================================
+40. MARCAÇÃO DE PROVENIÊNCIA
+============================================================
+
+Use no Markdown:
+
+[DERIVADO DO PDF ORIGINAL]
+
+[DEDUÇÃO MATEMÁTICA]
+
+[RESULTADO SIMBÓLICO]
+
+[RESULTADO NUMÉRICO]
+
+[TESTE INDEPENDENTE]
+
+[HIPÓTESE / NÃO PROVADO]
+
+Não confunda resultados do código com conteúdo do PDF.
+
+============================================================
+41. TRATAMENTO DA Eq.(26)
+============================================================
+
+Existe uma divergência já conhecida entre a Eq.(26) literalmente escrita nas
+notas e a expressão f34 obtida da geometria/Eq.(17).
+
+NÃO altere silenciosamente o PDF.
+
+No relatório:
+
+- mostre a Eq.(26) literal quando necessário;
+- marque-a como fonte;
+- use a expressão reconstruída geometricamente no pipeline auditado;
+- explique a divergência;
+- não atribua a correção ao PDF.
+
+A inversão t NÃO deve alterar diretamente f34.
+
+============================================================
+42. PROTEÇÃO CONTRA RESULTADOS STALE
+============================================================
+
+Cada JSON/CSV deve guardar SHA-256 de:
+
+quadrupolar_spin_liquid_t_reversed.py
+compare_old_vs_t_reversed.py
+draw_t_lattice.py.
+
+Se os scripts mudarem depois da geração:
+
+o report builder deve acusar mismatch.
+
+============================================================
+43. WARNINGS
+============================================================
+
+Execute, quando aplicável:
+
+python3 -W error ...
+
+Nenhum warning pode ser simplesmente ignorado.
+
+============================================================
+44. QUALIDADE DE SOFTWARE
+============================================================
+
+Evite duplicar gauges e geometry em múltiplos arquivos.
+
+O ideal é:
+
+quadrupolar_spin_liquid_t_reversed.py
+
+ser a fonte de:
+
+ORIGINAL_GAUGE
+T_REVERSED_GAUGE
+GEOMETRY.
+
+Os outros scripts importam essas estruturas.
+
+Para verificações científicas críticas, prefira:
+
+if not condition:
+    raise RuntimeError(...)
+
+a `assert`, pois `python -O` remove asserts.
+
+============================================================
+45. NÃO FAÇA
+============================================================
+
+NÃO:
+
+- inverter z;
+- inverter w;
+- inverter x;
+- inverter y;
+- usar qualquer setor anterior como base;
+- mudar u42z;
+- mudar u31z;
+- mudar u43w;
+- mudar u12w;
+- mudar u34x;
+- mudar u12x;
+- mudar u23y;
+- mudar u41y;
+- deixar u13t=-1;
+- deixar u24t=-1;
+- alterar a geometria;
+- voltar a [-π/2,π/2] como intervalo principal;
+- decidir estabilidade pelo gap;
+- usar band tracking para energia;
+- hard-code resultados;
+- assumir degenerescência com OLD;
+- reutilizar resultados Z ou W;
+- ignorar erros de normalização;
+- validar uma fórmula contra uma cópia da mesma fórmula.
+
+============================================================
+46. CRITÉRIOS AUTOMÁTICOS DE FALHA
+============================================================
+
+FAIL se:
+
+changed_keys != {"u13t","u24t"}
+
+ou
+
+T_REVERSED_GAUGE["u13t"] != +1
+
+ou
+
+T_REVERSED_GAUGE["u24t"] != +1.
+
+FAIL se qualquer ligação não-t mudar.
+
+FAIL se:
+
+H_RAW_FROM_BONDS != H_RAW_CLOSED
+
+fora da tolerância.
+
+FAIL se:
+
+H_BLOCH != U† H_RAW U.
+
+FAIL se q2 não cancelar.
+
+FAIL se finite-chain e Bloch discordarem.
+
+FAIL se aparecer fator 2 ou 4 na energia.
+
+FAIL se os gráficos principais não usarem [-π,π].
+
+FAIL se a comparação energética usar normalizações diferentes.
+
+============================================================
+47. EXECUÇÃO OBRIGATÓRIA
+============================================================
+
+Antes de entregar:
+
+1. compile todos os scripts;
+2. execute com warnings como erros;
+3. execute testes simbólicos;
+4. execute 1000 testes randomizados;
+5. execute cadeia finita;
+6. execute benchmark;
+7. execute convergência;
+8. gere gráficos;
+9. gere CSV;
+10. gere JSON;
+11. gere Markdown;
+12. confirme hashes;
+13. abra e valide os PNGs;
+14. confira que nenhum output menciona Z-REVERSED como setor atual.
+
+============================================================
+48. SAÍDA TERMINAL
+============================================================
+
+Imprima:
+
+T-REVERSED SCIENTIFIC AUDIT
+============================
+
+Gauge:
+changed keys = ...
+
+OLD fluxes:
+...
+
+T fluxes:
+...
+
+BZ:
+q in [-pi, pi]
+
+OLD:
+min_abs_E = ...
+zero-energy gap = ...
+epsilon = ...
+
+T-REVERSED:
+min_abs_E = ...
+zero-energy gap = ...
+epsilon = ...
+
+Delta epsilon = ...
+
+Energetically favored:
+...
+
+RAW validation:
+PASS/FAIL
+
+Eq.(27):
+PASS/FAIL
+
+q2 cancellation:
+PASS/FAIL
+
+Hermiticity:
+PASS/FAIL
+
+Majorana symmetry:
+PASS/FAIL
+
+Characteristic polynomial:
+PASS/FAIL
+
+Finite chain:
+PASS/FAIL
+
+1000 random tests:
+PASS/FAIL
+
+BZ normalization:
+PASS/FAIL
+
+Convergence:
+PASS/FAIL
+
+Benchmark:
+...
+
+============================================================
+49. PARECER FINAL OBRIGATÓRIO
+============================================================
+
+### Physical verdict
+
+T-REVERSED altera exclusivamente as ligações t?
+
+YES / NO
+
+### Mathematical verdict
+
+geometry
+→ H_real
+→ H_raw
+→ Eq.(27)
+→ H_Bloch
+
+foi validado independentemente?
+
+YES / NO
+
+### Numerical verdict
+
+Os resultados estão numericamente convergidos?
+
+YES / WITH RESERVATIONS / NO
+
+### Isotropic result
+
+epsilon_old = ...
+epsilon_t = ...
+Delta_epsilon = ...
+
+gap_old = ...
+gap_t = ...
+
+### Energetic comparison
+
+favored sector = ...
+
+### Scientific reliability
+
+A) cientificamente robusto
+B) correto com pequenas pendências
+C) funcional mas insuficientemente validado
+D) contém erro físico/matemático
+E) implementa o setor errado.
+
+### Advisor readiness
+
+É seguro apresentar esses resultados ao orientador?
+
+YES
+YES, WITH RESERVATIONS
+NO.
+
+============================================================
+REGRA FINAL — AUDITORIA ADVERSARIAL
+============================================================
+
+Sua função NÃO é confirmar que T-REVERSED “deu certo”.
+
+Sua função é tentar destruir o resultado.
+
+Procure agressivamente:
+
+- sinal incorreto;
+- u_ji tratado errado;
+- bond t invertido apenas parcialmente;
+- bond não-t alterado;
+- erro de deslocamento;
+- erro de q1;
+- erro de q2;
+- Eq.(27) aplicada ao contrário;
+- cancelamento de dois erros;
+- double counting;
+- fator Majorana incorreto;
+- erro de BZ;
+- integral mal normalizada;
+- eigenvalue tracking contaminando F(q);
+- degenerescência falsa;
+- teste circular;
+- resultado stale.
+
+Somente aprove o setor T-REVERSED se ele sobreviver a todos esses testes.

@@ -1,0 +1,94 @@
+{
+  "quadrupolar_spin_liquid_z_reversed.py": {
+    "bytes": 18813,
+    "sha256": "7f6e9ecf7c29afdc24cbbd0a8c4e63c5fe600fb52978079a0e8655001da80780"
+  },
+  "compare_old_vs_z_reversed.py": {
+    "bytes": 12341,
+    "sha256": "39bfd60c41e7b0783921473fc37516f9f2cc486503516c7bd1b15d2311187845"
+  },
+  "draw_z_lattice.py": {
+    "bytes": 8849,
+    "sha256": "030f0d5dacd7ff593aa0841b093c35bc2d90f9dc566a61fba0ca68ad28e6d47b"
+  },
+  "qsl_lattice_z_reversed.png": {
+    "bytes": 114561,
+    "sha256": "939735c21471645ae3ad867ae9be9ecb3dd9be621786969238821a883a41f9ce"
+  },
+  "dispersion_old_vs_z_reversed.png": {
+    "bytes": 228409,
+    "sha256": "bb68d5ab0a9477310efe45eeffbb1b025b7f46c855abe5638bdc0dc07860904e"
+  },
+  "Fq_old_vs_z_reversed.png": {
+    "bytes": 172511,
+    "sha256": "735c057bac59f841ff0dae45e7f80c58675ee6a5d52d695de68a4f879f255d64"
+  },
+  "ground_state_energy_old_vs_z.csv": {
+    "bytes": 186,
+    "sha256": "f6a2d4401cf5a073c762dcfa5a42add59fbf20da2d83a2fbd33b67a4bbf86c9f"
+  },
+  "energy_convergence_old_vs_z.csv": {
+    "bytes": 322,
+    "sha256": "be379390481d3097fa7798b33b076d0de52d4764486bf96bab585104d0c69989"
+  },
+  "validation_z_reversed.json": {
+    "bytes": 2771,
+    "sha256": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164"
+  },
+  "comparison_z_reversed.json": {
+    "bytes": 4250,
+    "sha256": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f"
+  },
+  "geometry_flux_audit.json": {
+    "bytes": 6194,
+    "sha256": "f0a31968895ff664f663496d4d6119eab359393e30465b020111aa7f20276f38"
+  },
+  "validation_z_reversed.log": {
+    "bytes": 2771,
+    "sha256": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164"
+  },
+  "comparison_z_reversed.log": {
+    "bytes": 4250,
+    "sha256": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f"
+  },
+  "README_Z_REVERSED.md": {
+    "bytes": 2367,
+    "sha256": "3726b4deb09fd5e9f2c92ba6dfdbb85c19dfb0166de8323de21b27d04a9c3e04"
+  },
+  "auditoria_fontes/original-3.png": {
+    "bytes": 303351,
+    "sha256": "ea336318b2693e4add9af9ddbef8b9419b9f7f69d41a0abe16be0e3f7d2163ac"
+  },
+  "auditoria_fontes/original-4.png": {
+    "bytes": 340777,
+    "sha256": "0efb89aada6525b64fbbdb358d5ac76317df652fa8145507afa64c1cdfc6c5dd"
+  },
+  "auditoria_fontes/original-5.png": {
+    "bytes": 229852,
+    "sha256": "f661051b204cbf9f15aabcb85a72f4c8864359b67d0eb035a4a028972bcd8225"
+  },
+  "auditoria_fontes/original-6.png": {
+    "bytes": 328357,
+    "sha256": "c2bcceeba54d3b29206cc6ba4b56bd36c41e1315e20f53cf4b1714b6aeadb078"
+  },
+  "auditoria_fontes/original-7.png": {
+    "bytes": 211177,
+    "sha256": "5106be284924180fb3a1d79916f76ef279050e76d63b46ea3d601139ede14856"
+  },
+  "auditoria_fontes/original-8.png": {
+    "bytes": 219271,
+    "sha256": "561764227ea057e08edf1bee2fbf6408863d901137ad858a0b6e3c5fa8043a6f"
+  },
+  "fontes/Quadrupolar_Spin_Liquid_OLD_reference.md": {
+    "bytes": 5676,
+    "sha256": "1422e55c6ad12d6bd656e9a4601f1f8a3711ca8932a404ff06c27c1ffe34cc84"
+  },
+  "fontes/PDF_original.pdf": {
+    "bytes": 24247301,
+    "sha256": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e"
+  },
+  "Quadrupolar_Spin_Liquid_Z_Reversed.md": {
+    "bytes": 53608,
+    "sha256": "3df4f8bb249d7edd48d4fb9418aa6efbba550d636dc4addd518f83e331164f3a"
+  }
+}

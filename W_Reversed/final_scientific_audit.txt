@@ -1,0 +1,27 @@
+W-REVERSED SCIENTIFIC AUDIT
+============================
+
+Couplings: Kx=1 Ky=1 Kz=1 Kt=1 Kw=1
+BZ: q in [-pi, pi]
+Gauge differences: u43w +1 -> -1; u12w -1 -> +1
+Fluxes OLD: {'W124': 1, 'W234': 1, 'W123': 1, 'W134': 1, 'W213': 1, 'W143': 1, 'W214': 1, 'W243': 1}
+Fluxes W: {'W124': 1, 'W234': 1, 'W123': 1, 'W134': 1, 'W213': -1, 'W143': -1, 'W214': -1, 'W243': -1}
+OLD / zero-flux: gap=1.999999999999998; epsilon=-1.063544409973365
+W-REVERSED: gap=0.472135954999577; epsilon=-0.838804985931099
+Delta epsilon = 0.224739424042266
+Favored sector: OLD
+Symbolic tests: PASS
+1000 random tests: PASS
+Finite-chain validation: PASS; max spectrum error = 2.487e-14
+Energy normalization: PASS
+Convergence: PASS
+Performance benchmark: 24 operation/sector cases, 5 warmed repeats each
+FINAL SCIENTIFIC VERDICT: A
+Advisor discussion: YES, WITH RESERVATIONS (documented source errata; fixed-gauge isotropic scope)
+Physical verdict: YES
+Mathematical verdict: YES
+Numerical verdict: YES (reported isotropic point)
+Benchmark physical bands 16001 (H build + eigvalsh) Ncell=-: median=0.0514835s min=0.0494139s max=0.0554720s
+Benchmark integral 16001 (physical bands precomputed) Ncell=-: median=0.0004988s min=0.0004906s max=0.0005138s
+Benchmark energy 16001 (H build + eigvalsh + integral) Ncell=-: median=0.0464317s min=0.0435691s max=0.0474290s
+Benchmark finite A build + full eigvalsh(iA) Ncell=129: median=0.0521610s min=0.0490259s max=0.0550456s

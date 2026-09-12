@@ -1,0 +1,36 @@
+T-REVERSED SCIENTIFIC AUDIT
+============================
+
+Couplings: Kx=1 Ky=1 Kz=1 Kt=1 Kw=1
+BZ: q in [-pi, pi]
+Gauge: changed keys = u13t, u24t; both -1 -> +1
+Fluxes OLD: {'W124': 1, 'W234': 1, 'W123': 1, 'W134': 1, 'W213': 1, 'W143': 1, 'W214': 1, 'W243': 1}
+Fluxes T: {'W124': 1, 'W234': 1, 'W123': -1, 'W134': -1, 'W213': 1, 'W143': 1, 'W214': -1, 'W243': -1}
+OLD / zero-flux: min_abs_E=0.999999999999999; zero-energy gap=1.999999999999998; epsilon=-1.063544409973365
+T-REVERSED: min_abs_E=1.000000000000000; zero-energy gap=2.000000000000000; epsilon=-1.063544409973365
+Delta epsilon = -2.220446049250313e-16
+Favored sector: DEGENERATE / UNRESOLVED NUMERICALLY
+RAW validation: PASS
+Eq.(27): PASS
+q2 cancellation: PASS
+Hermiticity: PASS
+Majorana symmetry: PASS
+Characteristic polynomial: PASS
+Symbolic tests: PASS
+1000 random tests: PASS
+Finite-chain validation: PASS; max spectrum error = 1.021e-14
+BZ normalization: PASS
+Convergence: PASS
+Stale-data rejection: PASS
+Explicit 64-state Majorana operator: PASS; energy/site error=2.220e-15
+Performance benchmark: 27 operation/sector cases, 5 warmed repeats each
+FINAL SCIENTIFIC VERDICT: A
+Advisor discussion: YES, WITH RESERVATIONS (documented source errata; fixed-gauge isotropic scope)
+Physical verdict: YES
+Mathematical verdict: YES
+Numerical verdict: YES (reported isotropic point)
+Benchmark physical bands 16001 (H build + eigvalsh) Ncell=-: median=0.0253836s min=0.0240054s max=0.0274032s
+Benchmark F(q) 16001 (H build + eigvalsh + negative sum) Ncell=-: median=0.0245401s min=0.0241250s max=0.0259706s
+Benchmark integral 16001 (physical bands precomputed) Ncell=-: median=0.0003365s min=0.0003287s max=0.0003688s
+Benchmark energy 16001 (H build + eigvalsh + integral) Ncell=-: median=0.0250399s min=0.0245031s max=0.0254261s
+Benchmark finite A build + full eigvalsh(iA) Ncell=129: median=0.0431558s min=0.0429746s max=0.0444735s

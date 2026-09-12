@@ -1,0 +1,17 @@
+[
+  {
+    "snapshot": "OLD_reference_unchanged.md",
+    "source": "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_OLD_reference_obsidian.md",
+    "sha256": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156"
+  },
+  {
+    "snapshot": "legacy_comparison_z_reversed.json",
+    "source": "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topol\u00f3gica/comparison_z_reversed.json",
+    "sha256": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f"
+  },
+  {
+    "snapshot": "legacy_validation_z_reversed.json",
+    "source": "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topol\u00f3gica/validation_z_reversed.json",
+    "sha256": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164"
+  }
+]

@@ -1,0 +1,1342 @@
+{
+  "metadata": {
+    "generated_at_utc": "2026-09-10T20:29:02.403857+00:00",
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0,
+    "q_min": -3.141592653589793,
+    "q_max": 3.141592653589793,
+    "BZ_width": 6.283185307179586,
+    "N_sites_per_cell": 4,
+    "normalization_formula": "epsilon = integral[-pi,pi] F(q) dq / (8*pi)",
+    "integration_method": "trapezoid on nested grids; independent adaptive scipy.quad",
+    "gap_tolerance": 1e-08,
+    "energy_tolerance": 1e-10,
+    "software_versions": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "sympy": "1.12",
+      "matplotlib": "3.6.3"
+    },
+    "seed": 20260910,
+    "number_random_cases": 1000,
+    "script_sha256": {
+      "build_report_w_reversed.py": "e4ef45f1d3b91fd84725b2c125b8fc42bc80c284b9b41db158ad729924f0a2ac",
+      "compare_old_vs_w_reversed.py": "2dbbffa1e9a1f04e332dc1fabd4aa37c5a331971a7c76c3c7db9626497956929",
+      "draw_w_lattice.py": "d9715c4987f5d84ceeaec0610c80a0e5ff610f6104018863b99b2d3354b8d735",
+      "quadrupolar_spin_liquid_w_reversed.py": "6bb17be928631f1a7837dc1c0124a8d37c213b012212b052688096f342993320",
+      "symbolic_w_audit.py": "8c085c697ae8b026eb1d5ec4a0274e3a0b78d97ab4d8fd33580875534dd4ff71"
+    },
+    "source_sha256": {
+      "/home/joaohenrique/Pesquisa/Vanuildo (Mat. Condensada)/Quadrupolar Spin Liquid in 1D (cópia).pdf": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e",
+      "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_OLD_reference_obsidian.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_Z_Reversed_Obsidian.md": "69d019175272a8e67d5f092b4a6e57b2c8ecae7441f0f82c2ad3d3411dbcdb91",
+      "/home/joaohenrique/.codex/attachments/4235169b-05ad-453f-8009-e21eb3e29f8f/pasted-text.txt": "f6323f7435a82ebb3a2bd77e2eb39466fd5d377aea6a7aab5270f214001174ca",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/build_report_z_reversed.py": "29ea15d6d3d4dd3fe9e80f4a5482a08c7474976671f08ce281a49df396f14d08",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/compare_old_vs_z_reversed.py": "39bfd60c41e7b0783921473fc37516f9f2cc486503516c7bd1b15d2311187845",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/draw_z_lattice.py": "030f0d5dacd7ff593aa0841b093c35bc2d90f9dc566a61fba0ca68ad28e6d47b",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/package_z_reversed.py": "4a9c0ba161c62d55d659651b12a7de1913472b4c70841199b877898940a5a31f",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/quadrupolar_spin_liquid_z_reversed.py": "7f6e9ecf7c29afdc24cbbd0a8c4e63c5fe600fb52978079a0e8655001da80780"
+    },
+    "local_source_sha256": {
+      "sources/OLD_reference_unchanged.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "sources/legacy_comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "sources/legacy_validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "sources/source_snapshot_manifest.json": "9c3dcb31dcdccc6b717ddd68e9485d834e2d082eb40aba46934ac35c9d311eb8"
+    },
+    "source_missing_as_named": "Quadrupolar_Spin_Liquid_Z_Reversed(1).md; available Obsidian version recorded instead",
+    "cell_translation": "2*a1",
+    "q_definition": "k dot a1",
+    "finite_momentum_rule": "q=pi*ell/Ncell; Ncell independent representatives, each inside PROJECT_BZ",
+    "majorana_convention": "{gamma_i,gamma_j}=2 delta_ij; H=(i/4)gamma^T A gamma; h=iA/2",
+    "finite_energy_formula": "E0=-sum(abs(eigvalsh(i*A)))/4; epsilon=E0/(4*Ncell)",
+    "warnings": "Run with -W error; none suppressed"
+  },
+  "source_geometry": "PDF pages 3-4, Eq.(11), original arrows page 4; gauge Eq.(15), page 5",
+  "changed_keys": [
+    "u12w",
+    "u43w"
+  ],
+  "visible_edge_count": 26,
+  "visible_edge_counts_by_kind": {
+    "x": 6,
+    "y": 6,
+    "z": 5,
+    "t": 5,
+    "w": 4
+  },
+  "reversed_w_edge_count": 4,
+  "non_w_edges_unchanged": true,
+  "positions_and_vectors_unchanged": true,
+  "drawing_matches_independent_PDF_figure_rules": true,
+  "core_bonds_match_independent_Eq11_transcription": true,
+  "changed_edges": [
+    {
+      "old": {
+        "start": [
+          5.0,
+          2.0
+        ],
+        "end": [
+          3.0,
+          2.0
+        ],
+        "kind": "w",
+        "key": "u43w",
+        "stored_start_cell": 1
+      },
+      "w_reversed": {
+        "start": [
+          3.0,
+          2.0
+        ],
+        "end": [
+          5.0,
+          2.0
+        ],
+        "kind": "w",
+        "key": "u43w",
+        "stored_start_cell": 1
+      }
+    },
+    {
+      "old": {
+        "start": [
+          2.0,
+          0.0
+        ],
+        "end": [
+          4.0,
+          0.0
+        ],
+        "kind": "w",
+        "key": "u12w",
+        "stored_start_cell": 1
+      },
+      "w_reversed": {
+        "start": [
+          4.0,
+          0.0
+        ],
+        "end": [
+          2.0,
+          0.0
+        ],
+        "kind": "w",
+        "key": "u12w",
+        "stored_start_cell": 1
+      }
+    },
+    {
+      "old": {
+        "start": [
+          9.0,
+          2.0
+        ],
+        "end": [
+          7.0,
+          2.0
+        ],
+        "kind": "w",
+        "key": "u43w",
+        "stored_start_cell": 2
+      },
+      "w_reversed": {
+        "start": [
+          7.0,
+          2.0
+        ],
+        "end": [
+          9.0,
+          2.0
+        ],
+        "kind": "w",
+        "key": "u43w",
+        "stored_start_cell": 2
+      }
+    },
+    {
+      "old": {
+        "start": [
+          6.0,
+          0.0
+        ],
+        "end": [
+          8.0,
+          0.0
+        ],
+        "kind": "w",
+        "key": "u12w",
+        "stored_start_cell": 2
+      },
+      "w_reversed": {
+        "start": [
+          8.0,
+          0.0
+        ],
+        "end": [
+          6.0,
+          0.0
+        ],
+        "kind": "w",
+        "key": "u12w",
+        "stored_start_cell": 2
+      }
+    }
+  ],
+  "OLD_EDGES": [
+    {
+      "start": [
+        0.0,
+        0.0
+      ],
+      "end": [
+        2.0,
+        0.0
+      ],
+      "kind": "x",
+      "key": "u12x",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        3.0,
+        2.0
+      ],
+      "end": [
+        1.0,
+        2.0
+      ],
+      "kind": "x",
+      "key": "u34x",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        2.0,
+        0.0
+      ],
+      "end": [
+        3.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u23y",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        0.0,
+        0.0
+      ],
+      "end": [
+        1.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u41y",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        1.0,
+        2.0
+      ],
+      "end": [
+        2.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u42z",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        3.0,
+        2.0
+      ],
+      "end": [
+        4.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u31z",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        3.0,
+        2.0
+      ],
+      "end": [
+        0.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u13t",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        5.0,
+        2.0
+      ],
+      "end": [
+        2.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u24t",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        4.0,
+        0.0
+      ],
+      "end": [
+        6.0,
+        0.0
+      ],
+      "kind": "x",
+      "key": "u12x",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        7.0,
+        2.0
+      ],
+      "end": [
+        5.0,
+        2.0
+      ],
+      "kind": "x",
+      "key": "u34x",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        6.0,
+        0.0
+      ],
+      "end": [
+        7.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u23y",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        4.0,
+        0.0
+      ],
+      "end": [
+        5.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u41y",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        5.0,
+        2.0
+      ],
+      "end": [
+        6.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u42z",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        7.0,
+        2.0
+      ],
+      "end": [
+        8.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u31z",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        5.0,
+        2.0
+      ],
+      "end": [
+        3.0,
+        2.0
+      ],
+      "kind": "w",
+      "key": "u43w",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        2.0,
+        0.0
+      ],
+      "end": [
+        4.0,
+        0.0
+      ],
+      "kind": "w",
+      "key": "u12w",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        7.0,
+        2.0
+      ],
+      "end": [
+        4.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u13t",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        9.0,
+        2.0
+      ],
+      "end": [
+        6.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u24t",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        8.0,
+        0.0
+      ],
+      "end": [
+        10.0,
+        0.0
+      ],
+      "kind": "x",
+      "key": "u12x",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        11.0,
+        2.0
+      ],
+      "end": [
+        9.0,
+        2.0
+      ],
+      "kind": "x",
+      "key": "u34x",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        10.0,
+        0.0
+      ],
+      "end": [
+        11.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u23y",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        8.0,
+        0.0
+      ],
+      "end": [
+        9.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u41y",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        9.0,
+        2.0
+      ],
+      "end": [
+        10.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u42z",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        9.0,
+        2.0
+      ],
+      "end": [
+        7.0,
+        2.0
+      ],
+      "kind": "w",
+      "key": "u43w",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        6.0,
+        0.0
+      ],
+      "end": [
+        8.0,
+        0.0
+      ],
+      "kind": "w",
+      "key": "u12w",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        11.0,
+        2.0
+      ],
+      "end": [
+        8.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u13t",
+      "stored_start_cell": 2
+    }
+  ],
+  "W_REVERSED_EDGES": [
+    {
+      "start": [
+        0.0,
+        0.0
+      ],
+      "end": [
+        2.0,
+        0.0
+      ],
+      "kind": "x",
+      "key": "u12x",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        3.0,
+        2.0
+      ],
+      "end": [
+        1.0,
+        2.0
+      ],
+      "kind": "x",
+      "key": "u34x",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        2.0,
+        0.0
+      ],
+      "end": [
+        3.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u23y",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        0.0,
+        0.0
+      ],
+      "end": [
+        1.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u41y",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        1.0,
+        2.0
+      ],
+      "end": [
+        2.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u42z",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        3.0,
+        2.0
+      ],
+      "end": [
+        4.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u31z",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        3.0,
+        2.0
+      ],
+      "end": [
+        0.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u13t",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        5.0,
+        2.0
+      ],
+      "end": [
+        2.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u24t",
+      "stored_start_cell": 0
+    },
+    {
+      "start": [
+        4.0,
+        0.0
+      ],
+      "end": [
+        6.0,
+        0.0
+      ],
+      "kind": "x",
+      "key": "u12x",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        7.0,
+        2.0
+      ],
+      "end": [
+        5.0,
+        2.0
+      ],
+      "kind": "x",
+      "key": "u34x",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        6.0,
+        0.0
+      ],
+      "end": [
+        7.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u23y",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        4.0,
+        0.0
+      ],
+      "end": [
+        5.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u41y",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        5.0,
+        2.0
+      ],
+      "end": [
+        6.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u42z",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        7.0,
+        2.0
+      ],
+      "end": [
+        8.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u31z",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        3.0,
+        2.0
+      ],
+      "end": [
+        5.0,
+        2.0
+      ],
+      "kind": "w",
+      "key": "u43w",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        4.0,
+        0.0
+      ],
+      "end": [
+        2.0,
+        0.0
+      ],
+      "kind": "w",
+      "key": "u12w",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        7.0,
+        2.0
+      ],
+      "end": [
+        4.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u13t",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        9.0,
+        2.0
+      ],
+      "end": [
+        6.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u24t",
+      "stored_start_cell": 1
+    },
+    {
+      "start": [
+        8.0,
+        0.0
+      ],
+      "end": [
+        10.0,
+        0.0
+      ],
+      "kind": "x",
+      "key": "u12x",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        11.0,
+        2.0
+      ],
+      "end": [
+        9.0,
+        2.0
+      ],
+      "kind": "x",
+      "key": "u34x",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        10.0,
+        0.0
+      ],
+      "end": [
+        11.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u23y",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        8.0,
+        0.0
+      ],
+      "end": [
+        9.0,
+        2.0
+      ],
+      "kind": "y",
+      "key": "u41y",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        9.0,
+        2.0
+      ],
+      "end": [
+        10.0,
+        0.0
+      ],
+      "kind": "z",
+      "key": "u42z",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        7.0,
+        2.0
+      ],
+      "end": [
+        9.0,
+        2.0
+      ],
+      "kind": "w",
+      "key": "u43w",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        8.0,
+        0.0
+      ],
+      "end": [
+        6.0,
+        0.0
+      ],
+      "kind": "w",
+      "key": "u12w",
+      "stored_start_cell": 2
+    },
+    {
+      "start": [
+        11.0,
+        2.0
+      ],
+      "end": [
+        8.0,
+        0.0
+      ],
+      "kind": "t",
+      "key": "u13t",
+      "stored_start_cell": 2
+    }
+  ],
+  "OLD": {
+    "W124": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "xzy",
+      "factors": [
+        1,
+        -1,
+        -1
+      ],
+      "product": "(u12x) (-u42z) (u41y)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W234": {
+      "path": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "kinds": "yxz",
+      "factors": [
+        1,
+        1,
+        1
+      ],
+      "product": "(u23y) (u34x) (u42z)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W123": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "xyt",
+      "factors": [
+        1,
+        1,
+        1
+      ],
+      "product": "(u12x) (u23y) (-u13t)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W134": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "txy",
+      "factors": [
+        -1,
+        1,
+        -1
+      ],
+      "product": "(u13t) (u34x) (u41y)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W213": {
+      "path": [
+        [
+          -1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          3
+        ],
+        [
+          -1,
+          2
+        ]
+      ],
+      "kinds": "wzy",
+      "factors": [
+        1,
+        -1,
+        -1
+      ],
+      "product": "(-u12w) (-u31z) (-u23y)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W143": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          -1,
+          3
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "ywz",
+      "factors": [
+        1,
+        1,
+        1
+      ],
+      "product": "(-u41y) (u43w) (u31z)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W214": {
+      "path": [
+        [
+          -1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          -1,
+          2
+        ]
+      ],
+      "kinds": "wyt",
+      "factors": [
+        1,
+        1,
+        1
+      ],
+      "product": "(-u12w) (-u41y) (-u24t)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W243": {
+      "path": [
+        [
+          -1,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          -1,
+          3
+        ],
+        [
+          -1,
+          2
+        ]
+      ],
+      "kinds": "twy",
+      "factors": [
+        -1,
+        1,
+        -1
+      ],
+      "product": "(u24t) (u43w) (-u23y)",
+      "flux": 1,
+      "signed_area": 2.0
+    }
+  },
+  "W_REVERSED": {
+    "W124": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "xzy",
+      "factors": [
+        1,
+        -1,
+        -1
+      ],
+      "product": "(u12x) (-u42z) (u41y)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W234": {
+      "path": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "kinds": "yxz",
+      "factors": [
+        1,
+        1,
+        1
+      ],
+      "product": "(u23y) (u34x) (u42z)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W123": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "xyt",
+      "factors": [
+        1,
+        1,
+        1
+      ],
+      "product": "(u12x) (u23y) (-u13t)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W134": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "txy",
+      "factors": [
+        -1,
+        1,
+        -1
+      ],
+      "product": "(u13t) (u34x) (u41y)",
+      "flux": 1,
+      "signed_area": 2.0
+    },
+    "W213": {
+      "path": [
+        [
+          -1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          -1,
+          3
+        ],
+        [
+          -1,
+          2
+        ]
+      ],
+      "kinds": "wzy",
+      "factors": [
+        -1,
+        -1,
+        -1
+      ],
+      "product": "(-u12w) (-u31z) (-u23y)",
+      "flux": -1,
+      "signed_area": 2.0
+    },
+    "W143": {
+      "path": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          -1,
+          3
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "kinds": "ywz",
+      "factors": [
+        1,
+        -1,
+        1
+      ],
+      "product": "(-u41y) (u43w) (u31z)",
+      "flux": -1,
+      "signed_area": 2.0
+    },
+    "W214": {
+      "path": [
+        [
+          -1,
+          2
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          -1,
+          2
+        ]
+      ],
+      "kinds": "wyt",
+      "factors": [
+        -1,
+        1,
+        1
+      ],
+      "product": "(-u12w) (-u41y) (-u24t)",
+      "flux": -1,
+      "signed_area": 2.0
+    },
+    "W243": {
+      "path": [
+        [
+          -1,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          -1,
+          3
+        ],
+        [
+          -1,
+          2
+        ]
+      ],
+      "kinds": "twy",
+      "factors": [
+        -1,
+        -1,
+        -1
+      ],
+      "product": "(u24t) (u43w) (-u23y)",
+      "flux": -1,
+      "signed_area": 2.0
+    }
+  },
+  "local_gauges_tested": 16,
+  "local_gauge_solutions": []
+}

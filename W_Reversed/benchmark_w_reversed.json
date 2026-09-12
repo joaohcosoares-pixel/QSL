@@ -1,0 +1,463 @@
+{
+  "clock": "time.perf_counter",
+  "warmup": "one untimed call per operation and sector",
+  "repeats": 5,
+  "rows": [
+    {
+      "operation": "1000 H(q) evaluations",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.11798423599975649,
+      "min_seconds": 0.11452269800065551,
+      "max_seconds": 0.12398121099977288,
+      "samples_seconds": [
+        0.12398121099977288,
+        0.11503002700010256,
+        0.11452269800065551,
+        0.11798423599975649,
+        0.12302407000061066
+      ]
+    },
+    {
+      "operation": "1000 eigvalsh 4x4 (H prebuilt)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.01004310899952543,
+      "min_seconds": 0.009594119000212231,
+      "max_seconds": 0.010380157000327017,
+      "samples_seconds": [
+        0.009893775999444188,
+        0.010380157000327017,
+        0.01004310899952543,
+        0.010345179999603715,
+        0.009594119000212231
+      ]
+    },
+    {
+      "operation": "physical bands 2001 (H build + eigvalsh)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.007339735000641667,
+      "min_seconds": 0.007318944999497035,
+      "max_seconds": 0.008609086999967985,
+      "samples_seconds": [
+        0.008609086999967985,
+        0.007669428000554035,
+        0.007329285999730928,
+        0.007318944999497035,
+        0.007339735000641667
+      ]
+    },
+    {
+      "operation": "physical bands 16001 (H build + eigvalsh)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.06030517199997121,
+      "min_seconds": 0.06005542000002606,
+      "max_seconds": 0.06134281499998906,
+      "samples_seconds": [
+        0.06030517199997121,
+        0.0604904030005855,
+        0.06134281499998906,
+        0.06005542000002606,
+        0.06022837700038508
+      ]
+    },
+    {
+      "operation": "integral 16001 (physical bands precomputed)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.0006714500004818547,
+      "min_seconds": 0.0006532449997393996,
+      "max_seconds": 0.0006849960000181454,
+      "samples_seconds": [
+        0.0006714500004818547,
+        0.0006799070006309194,
+        0.0006678239997199853,
+        0.0006532449997393996,
+        0.0006849960000181454
+      ]
+    },
+    {
+      "operation": "energy 16001 (H build + eigvalsh + integral)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.06142949900004169,
+      "min_seconds": 0.060711600999638904,
+      "max_seconds": 0.06263439800022752,
+      "samples_seconds": [
+        0.06134540899984131,
+        0.060711600999638904,
+        0.06230446399968059,
+        0.06263439800022752,
+        0.06142949900004169
+      ]
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.0002802400003929506,
+      "min_seconds": 0.0002743089999057702,
+      "max_seconds": 0.0002994459991896292,
+      "samples_seconds": [
+        0.0002994459991896292,
+        0.0002802400003929506,
+        0.0002944570005638525,
+        0.0002797389997795108,
+        0.0002743089999057702
+      ],
+      "Ncell": 5
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.0004529070001808577,
+      "min_seconds": 0.00044706599965138594,
+      "max_seconds": 0.0005008580001231167,
+      "samples_seconds": [
+        0.0004496000001381617,
+        0.0004707099997176556,
+        0.0004529070001808577,
+        0.0005008580001231167,
+        0.00044706599965138594
+      ],
+      "Ncell": 8
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.0012045490002492443,
+      "min_seconds": 0.0011999500002275454,
+      "max_seconds": 0.0012316299998929026,
+      "samples_seconds": [
+        0.0012316299998929026,
+        0.0012064829998053028,
+        0.0012025249998259824,
+        0.0012045490002492443,
+        0.0011999500002275454
+      ],
+      "Ncell": 17
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.003477497999483603,
+      "min_seconds": 0.003455648000453948,
+      "max_seconds": 0.0036855230000583106,
+      "samples_seconds": [
+        0.0036855230000583106,
+        0.003612112999689998,
+        0.003464053000243439,
+        0.003455648000453948,
+        0.003477497999483603
+      ],
+      "Ncell": 33
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.014603586000703217,
+      "min_seconds": 0.014586282999516698,
+      "max_seconds": 0.014713483999912569,
+      "samples_seconds": [
+        0.014617873999668518,
+        0.014713483999912569,
+        0.014586282999516698,
+        0.014603586000703217,
+        0.014593588000025193
+      ],
+      "Ncell": 65
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "OLD",
+      "repeats": 5,
+      "median_seconds": 0.08683264499995857,
+      "min_seconds": 0.08197909399950731,
+      "max_seconds": 0.08795005899992248,
+      "samples_seconds": [
+        0.08683264499995857,
+        0.08709666399954585,
+        0.08795005899992248,
+        0.08417949599970598,
+        0.08197909399950731
+      ],
+      "Ncell": 129
+    },
+    {
+      "operation": "1000 H(q) evaluations",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.11586808300035045,
+      "min_seconds": 0.11380514000029507,
+      "max_seconds": 0.11638728500020079,
+      "samples_seconds": [
+        0.11638728500020079,
+        0.11588783000024705,
+        0.11586808300035045,
+        0.11557661200004077,
+        0.11380514000029507
+      ]
+    },
+    {
+      "operation": "1000 eigvalsh 4x4 (H prebuilt)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.0093318930003079,
+      "min_seconds": 0.009271799999623909,
+      "max_seconds": 0.009466709000662377,
+      "samples_seconds": [
+        0.009426943000107713,
+        0.009466709000662377,
+        0.009327425000265066,
+        0.0093318930003079,
+        0.009271799999623909
+      ]
+    },
+    {
+      "operation": "physical bands 2001 (H build + eigvalsh)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.006935550999514817,
+      "min_seconds": 0.006913348999660229,
+      "max_seconds": 0.007162910000261036,
+      "samples_seconds": [
+        0.007162910000261036,
+        0.007070966999890516,
+        0.006935550999514817,
+        0.00691746700067597,
+        0.006913348999660229
+      ]
+    },
+    {
+      "operation": "physical bands 16001 (H build + eigvalsh)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.05148346300029516,
+      "min_seconds": 0.049413898999773664,
+      "max_seconds": 0.055472009000368416,
+      "samples_seconds": [
+        0.055472009000368416,
+        0.05386263400032476,
+        0.05148346300029516,
+        0.04999499800032936,
+        0.049413898999773664
+      ]
+    },
+    {
+      "operation": "integral 16001 (physical bands precomputed)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.0004988339996998548,
+      "min_seconds": 0.00049056800071412,
+      "max_seconds": 0.0005137919997650897,
+      "samples_seconds": [
+        0.0005050049994679284,
+        0.0005137919997650897,
+        0.0004988339996998548,
+        0.0004982020000170451,
+        0.00049056800071412
+      ]
+    },
+    {
+      "operation": "energy 16001 (H build + eigvalsh + integral)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.04643169599967223,
+      "min_seconds": 0.04356908200043108,
+      "max_seconds": 0.047428973999558366,
+      "samples_seconds": [
+        0.04686854299961851,
+        0.047428973999558366,
+        0.04643169599967223,
+        0.045300306000171986,
+        0.04356908200043108
+      ]
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.00018256500061397674,
+      "min_seconds": 0.00017872800071927486,
+      "max_seconds": 0.00021040799947513733,
+      "samples_seconds": [
+        0.00021040799947513733,
+        0.0001862619992607506,
+        0.00018256500061397674,
+        0.00017932000082510058,
+        0.00017872800071927486
+      ],
+      "Ncell": 5
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.0002930350001406623,
+      "min_seconds": 0.00028948799990757834,
+      "max_seconds": 0.0002993970001625712,
+      "samples_seconds": [
+        0.0002963309998449404,
+        0.00029177200030972017,
+        0.0002993970001625712,
+        0.0002930350001406623,
+        0.00028948799990757834
+      ],
+      "Ncell": 8
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.0007887120000305003,
+      "min_seconds": 0.0007861670001148013,
+      "max_seconds": 0.0007961960000102408,
+      "samples_seconds": [
+        0.0007929399998829467,
+        0.0007961960000102408,
+        0.0007869279997976264,
+        0.0007861670001148013,
+        0.0007887120000305003
+      ],
+      "Ncell": 17
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.0023817060000510537,
+      "min_seconds": 0.002250816999548988,
+      "max_seconds": 0.002695808999305882,
+      "samples_seconds": [
+        0.00228318900008162,
+        0.0023817060000510537,
+        0.002695808999305882,
+        0.0024708249993636855,
+        0.002250816999548988
+      ],
+      "Ncell": 33
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.009655145000579068,
+      "min_seconds": 0.009380694999890693,
+      "max_seconds": 0.010378633000073023,
+      "samples_seconds": [
+        0.010042296999927203,
+        0.009655145000579068,
+        0.009439356999791926,
+        0.010378633000073023,
+        0.009380694999890693
+      ],
+      "Ncell": 65
+    },
+    {
+      "operation": "finite A build + full eigvalsh(iA)",
+      "sector": "W-REVERSED",
+      "repeats": 5,
+      "median_seconds": 0.05216103499969904,
+      "min_seconds": 0.04902586399930442,
+      "max_seconds": 0.05504560200006381,
+      "samples_seconds": [
+        0.05504560200006381,
+        0.05503487199985102,
+        0.05216103499969904,
+        0.051210127000558714,
+        0.04902586399930442
+      ],
+      "Ncell": 129
+    }
+  ],
+  "thread_environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null
+  },
+  "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "interpretation": "Wall-clock timings on this machine; no precision reduction; finite timings include matrix build and diagonalization",
+  "metadata": {
+    "generated_at_utc": "2026-09-10T20:29:46.151763+00:00",
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0,
+    "q_min": -3.141592653589793,
+    "q_max": 3.141592653589793,
+    "BZ_width": 6.283185307179586,
+    "N_sites_per_cell": 4,
+    "normalization_formula": "epsilon = integral[-pi,pi] F(q) dq / (8*pi)",
+    "integration_method": "trapezoid on nested grids; independent adaptive scipy.quad",
+    "gap_tolerance": 1e-08,
+    "energy_tolerance": 1e-10,
+    "software_versions": {
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "sympy": "1.12",
+      "matplotlib": "3.6.3"
+    },
+    "seed": 20260910,
+    "number_random_cases": 1000,
+    "script_sha256": {
+      "build_report_w_reversed.py": "e4ef45f1d3b91fd84725b2c125b8fc42bc80c284b9b41db158ad729924f0a2ac",
+      "compare_old_vs_w_reversed.py": "2dbbffa1e9a1f04e332dc1fabd4aa37c5a331971a7c76c3c7db9626497956929",
+      "draw_w_lattice.py": "d9715c4987f5d84ceeaec0610c80a0e5ff610f6104018863b99b2d3354b8d735",
+      "quadrupolar_spin_liquid_w_reversed.py": "6bb17be928631f1a7837dc1c0124a8d37c213b012212b052688096f342993320",
+      "symbolic_w_audit.py": "8c085c697ae8b026eb1d5ec4a0274e3a0b78d97ab4d8fd33580875534dd4ff71"
+    },
+    "source_sha256": {
+      "/home/joaohenrique/Pesquisa/Vanuildo (Mat. Condensada)/Quadrupolar Spin Liquid in 1D (cópia).pdf": "e8d763f2b40c0df4cbd764b1d467d278e348076f589922752da54a5df5761e1e",
+      "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_OLD_reference_obsidian.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "/home/joaohenrique/Pesquisa/Pesquisa/QSL/Quadrupolar_Spin_Liquid_Z_Reversed_Obsidian.md": "69d019175272a8e67d5f092b4a6e57b2c8ecae7441f0f82c2ad3d3411dbcdb91",
+      "/home/joaohenrique/.codex/attachments/4235169b-05ad-453f-8009-e21eb3e29f8f/pasted-text.txt": "f6323f7435a82ebb3a2bd77e2eb39466fd5d377aea6a7aab5270f214001174ca",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "/home/joaohenrique/Documentos/ChatGPT/Paper Fase topológica/validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/build_report_z_reversed.py": "29ea15d6d3d4dd3fe9e80f4a5482a08c7474976671f08ce281a49df396f14d08",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/compare_old_vs_z_reversed.py": "39bfd60c41e7b0783921473fc37516f9f2cc486503516c7bd1b15d2311187845",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/draw_z_lattice.py": "030f0d5dacd7ff593aa0841b093c35bc2d90f9dc566a61fba0ca68ad28e6d47b",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/package_z_reversed.py": "4a9c0ba161c62d55d659651b12a7de1913472b4c70841199b877898940a5a31f",
+      "/home/joaohenrique/Computing/QSL/Z_Reversed_entregaveis/quadrupolar_spin_liquid_z_reversed.py": "7f6e9ecf7c29afdc24cbbd0a8c4e63c5fe600fb52978079a0e8655001da80780"
+    },
+    "local_source_sha256": {
+      "sources/OLD_reference_unchanged.md": "3c8dec124881e58a66e5f86cb95b07124bd82130a6aea79159bddae8d38b6156",
+      "sources/legacy_comparison_z_reversed.json": "0c7179b4206fcd75155bd7a3bdb3f4ae702e69e1dc9ab9afa9e6342e4bdc420f",
+      "sources/legacy_validation_z_reversed.json": "9bb9daff4372bdca66e6942906974bc1a20a6590b74666b858311a569002f164",
+      "sources/source_snapshot_manifest.json": "9c3dcb31dcdccc6b717ddd68e9485d834e2d082eb40aba46934ac35c9d311eb8"
+    },
+    "source_missing_as_named": "Quadrupolar_Spin_Liquid_Z_Reversed(1).md; available Obsidian version recorded instead",
+    "cell_translation": "2*a1",
+    "q_definition": "k dot a1",
+    "finite_momentum_rule": "q=pi*ell/Ncell; Ncell independent representatives, each inside PROJECT_BZ",
+    "majorana_convention": "{gamma_i,gamma_j}=2 delta_ij; H=(i/4)gamma^T A gamma; h=iA/2",
+    "finite_energy_formula": "E0=-sum(abs(eigvalsh(i*A)))/4; epsilon=E0/(4*Ncell)",
+    "warnings": "Run with -W error; none suppressed"
+  },
+  "script_sha256": {
+    "build_report_w_reversed.py": "e4ef45f1d3b91fd84725b2c125b8fc42bc80c284b9b41db158ad729924f0a2ac",
+    "compare_old_vs_w_reversed.py": "2dbbffa1e9a1f04e332dc1fabd4aa37c5a331971a7c76c3c7db9626497956929",
+    "draw_w_lattice.py": "d9715c4987f5d84ceeaec0610c80a0e5ff610f6104018863b99b2d3354b8d735",
+    "quadrupolar_spin_liquid_w_reversed.py": "6bb17be928631f1a7837dc1c0124a8d37c213b012212b052688096f342993320",
+    "symbolic_w_audit.py": "8c085c697ae8b026eb1d5ec4a0274e3a0b78d97ab4d8fd33580875534dd4ff71"
+  },
+  "couplings": {
+    "Kx": 1.0,
+    "Ky": 1.0,
+    "Kz": 1.0,
+    "Kt": 1.0,
+    "Kw": 1.0
+  },
+  "PROJECT_BZ": [
+    -3.141592653589793,
+    3.141592653589793
+  ]
+}

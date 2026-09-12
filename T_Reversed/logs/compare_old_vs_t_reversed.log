@@ -1,0 +1,22 @@
+T-REVERSED: convergence and continuous gap search on [-pi,pi]
+  Nq= 1001: OLD=-1.0635444099734; T=-1.0635444099734
+  Nq= 2001: OLD=-1.0635444099734; T=-1.0635444099734
+  Nq= 4001: OLD=-1.0635444099734; T=-1.0635444099734
+  Nq= 8001: OLD=-1.0635444099734; T=-1.0635444099734
+  Nq=16001: OLD=-1.0635444099734; T=-1.0635444099734
+  Nq=32001: OLD=-1.0635444099734; T=-1.0635444099734
+T-REVERSED: independent real-space finite-chain validation
+T-REVERSED: warmed performance benchmark (five or more repeats)
+
+T-REVERSED NUMERICAL COMPARISON
+================================
+Couplings: Kx=1, Ky=1, Kz=1, Kt=1, Kw=1
+BZ: q in [-pi, pi]
+Changed keys: u13t, u24t
+OLD: min_abs_E=1; zero_energy_band_gap=2; epsilon=-1.063544409973365
+T-REVERSED: min_abs_E=1; zero_energy_band_gap=2; epsilon=-1.063544409973365
+Delta epsilon = -2.22044604925031e-16 +/- 1e-10
+Favored sector: DEGENERATE / UNRESOLVED NUMERICALLY
+Finite-chain validation: PASS; max spectrum error=1.02e-14
+Energy normalization: PASS (independent real-space finite-chain convergence)
+Benchmark: 27 operations; 5 repeats after warm-up
